@@ -5,5 +5,4 @@ public interface ParamWolf {
     int AMOUNT_IN_CELL = 2;
     int SPEED = 3;
     float AMOUNT_EAT = 8;
-
 }

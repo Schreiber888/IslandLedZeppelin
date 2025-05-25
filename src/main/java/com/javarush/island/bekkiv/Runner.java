@@ -15,10 +15,13 @@ import java.util.concurrent.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Runner {
     public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
-
+        FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
+        factoryOrganisms.makeAnimals();
         Area area = new Area();
         area.go();
         //System.out.println(FactoryOrganisms.organisms);
+
+
 
         ParamConstInstanceOrganisms paramConstInstanceOrganisms = new ParamConstInstanceOrganisms();
         boolean n = true;
@@ -48,7 +51,7 @@ public class Runner {
                 }
             }
             n = false;
-            System.out.println(FactoryOrganisms.organisms);
+            //System.out.println(FactoryOrganisms.organisms);
         }
     }
 }
