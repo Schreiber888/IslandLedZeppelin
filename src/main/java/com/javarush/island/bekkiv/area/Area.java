@@ -5,6 +5,7 @@ import com.javarush.island.bekkiv.animals.Organisms;
 import com.javarush.island.bekkiv.plants.ParamPlants;
 import com.javarush.island.bekkiv.plants.Plants;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,16 +13,11 @@ public class Area {
 
     public static List<Organisms>[][] arrayArea = new List[ParamArea.ROWS_AREA][ParamArea.COLONS_AREA];
     Plants plants = new Plants(ParamPlants.WEIGHT, ParamPlants.AMOUNT_IN_CELL);
+    FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
 
     public void go() {
-        for (int i = 0; i < ParamPlants.AMOUNT_IN_CELL / ParamArea.K_DIVISION; i++) {
-            FactoryOrganisms.organisms.add(i, plants.clone());
-        }
-        for (int i = 0; i < Area.arrayArea.length; i++) {
-            for (int j = 0; j < Area.arrayArea[i].length; j++) {
-                Area.arrayArea[i][j] = FactoryOrganisms.organisms;
-            }
-        }
-        System.out.println(Arrays.deepToString(Area.arrayArea));
+
+
+        //System.out.println(Arrays.deepToString(Area.arrayArea));
     }
 }

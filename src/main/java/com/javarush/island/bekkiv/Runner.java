@@ -17,39 +17,41 @@ public class Runner {
     public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
         FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
         factoryOrganisms.makeAnimals();
-        Area area = new Area();
-        area.go();
         //System.out.println(FactoryOrganisms.organisms);
-
-
 
         ParamConstInstanceOrganisms paramConstInstanceOrganisms = new ParamConstInstanceOrganisms();
         boolean n = true;
         while (n) {
-            for (int i = 0; i < FactoryOrganisms.organisms.size(); i++) {
-                Organisms organismsFirst = FactoryOrganisms.organisms.get(i);
-                for (int j = 0; j < FactoryOrganisms.organisms.size(); j++) {
-                    Organisms organismsSecond = FactoryOrganisms.organisms.get(j);
-                    if (organismsFirst instanceof Predators) {
-                        if (((Predators) organismsFirst).getWeightKg() <= paramConstInstanceOrganisms.getWeight(organismsFirst)) {
-                            if (organismsSecond instanceof Herbivores) {
-                                if (RandomFood.getProbabilityFood(organismsFirst, organismsSecond) <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) {
-                                    FactoryOrganisms.organisms.remove(j);
-                                    System.out.println("Волк выгнал кабана из игры");
-                                    j = 0;
+            for (int i = 0; i < Area.arrayArea.length; i++) {
+                for (int j = 0; j < Area.arrayArea[i].length; j++) {
+                    for (int k = 0; k < Area.arrayArea[i][j].size(); k++) {
+                        Organisms organismsFirst = Area.arrayArea[i][j].get(k);
+                        for (int m = 0; m < Area.arrayArea[i][j].size(); m++) {
+                            Organisms organismsSecond = Area.arrayArea[i][j].get(m);
+                            if (organismsFirst instanceof Predators) {
+                                if (((Predators) organismsFirst).getWeightKg() <= paramConstInstanceOrganisms.getWeight(organismsFirst)) {
+                                    if (organismsSecond instanceof Herbivores) {
+                                        if (RandomFood.getProbabilityFood(organismsFirst, organismsSecond) <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) {
+                                            Area.arrayArea[i][j].remove(m);
+                                            System.out.println("Волк выгнал кабана из игры");
+                                            System.out.println(Area.arrayArea.hashCode());
+                                            m = 0;
+                                        }
+                                    }
+                                }
+                            }
+                            if (organismsFirst instanceof Herbivores) {
+                                if (organismsSecond instanceof Plants) {
+                                    System.out.println("Кабан выгнал растение из игры");
+                                    Area.arrayArea[i][j].remove(m);
+                                    m = Area.arrayArea[i][j].size();
                                 }
                             }
                         }
                     }
-                    if (organismsFirst instanceof Herbivores) {
-                        if (organismsSecond instanceof Plants) {
-                            System.out.println("Кабан выгнал растение из игры");
-                            FactoryOrganisms.organisms.remove(j);
-                            j = FactoryOrganisms.organisms.size();
-                        }
-                    }
                 }
             }
+
             n = false;
             //System.out.println(FactoryOrganisms.organisms);
         }
