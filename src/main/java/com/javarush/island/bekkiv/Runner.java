@@ -4,6 +4,7 @@ package com.javarush.island.bekkiv;
 
 import com.javarush.island.bekkiv.animals.Organisms;
 import com.javarush.island.bekkiv.area.Area;
+import com.javarush.island.bekkiv.game.Game;
 import com.javarush.island.bekkiv.herbivoresAnimals.Herbivores;
 
 import com.javarush.island.bekkiv.plants.Plants;
@@ -23,45 +24,11 @@ public class Runner {
         thread.start();
         thread.join();
 
-        ParamConstInstanceOrganisms paramConstInstanceOrganisms = new ParamConstInstanceOrganisms();
-        boolean n = true;
-        while (n) {
-            for (int i = 0; i < Area.arrayArea.length; i++) {
-                for (int j = 0; j < Area.arrayArea[i].length; j++) {
-                    for (int k = 0; k < Area.arrayArea[i][j].size(); k++) {
-                        Organisms organismsFirst = Area.arrayArea[i][j].get(k);
-                        for (int m = 0; m < Area.arrayArea[i][j].size(); m++) {
-                            Organisms organismsSecond = Area.arrayArea[i][j].get(m);
-                            if (organismsFirst instanceof Predators) {
-                                if (((Predators) organismsFirst).getWeightKg() <= paramConstInstanceOrganisms.getWeight(organismsFirst)) {
-                                    if (organismsSecond instanceof Herbivores) {
-                                        if (RandomFood.getProbabilityFood(organismsFirst, organismsSecond) <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) {
-                                            Area.arrayArea[i][j].remove(m);
-                                            System.out.println("Волк выгнал кабана из игры");
-                                            m = 0;
-                                        }
-                                    }
-                                }
-                            }
-                            if (organismsFirst instanceof Herbivores) {
-                                if (organismsSecond instanceof Plants) {
-                                    System.out.println("Кабан выгнал растение из игры");
-                                    System.out.println(organismsSecond.hashCode());
-                                    Area.arrayArea[i][j].remove(m);
-                                    m = Area.arrayArea[i][j].size();
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            System.out.println(Area.arrayArea[0][0].size());
-            System.out.println(Area.arrayArea[0][1].size());
-            System.out.println(Area.arrayArea[1][0].size());
-            System.out.println(Area.arrayArea[1][1].size());
-            n = false;
-            //System.out.println(FactoryOrganisms.organisms);
-        }
+        Game game = new Game();
+        Thread threadGame = new Thread(game);
+        threadGame.start();
+        threadGame.join();
+
 
     }
 }
