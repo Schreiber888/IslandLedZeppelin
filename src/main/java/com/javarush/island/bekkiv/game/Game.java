@@ -8,6 +8,8 @@ import com.javarush.island.bekkiv.herbivoresAnimals.Herbivores;
 import com.javarush.island.bekkiv.plants.Plants;
 import com.javarush.island.bekkiv.predatoryAnimals.Predators;
 
+import java.util.List;
+
 public class Game implements Runnable{
 
     @Override
@@ -17,18 +19,19 @@ public class Game implements Runnable{
         while (n) {
             for (int i = 0; i < Area.arrayArea.length; i++) {
                 for (int j = 0; j < Area.arrayArea[i].length; j++) {
-                    for (int k = 0; k < Area.arrayArea[i][j].size(); k++) {
-                        Organisms organismsFirst = Area.arrayArea[i][j].get(k);
-                        for (int m = 0; m < Area.arrayArea[i][j].size(); m++) {
-                            Organisms organismsSecond = Area.arrayArea[i][j].get(m);
+                    List<Organisms> tempListOrganisms = Area.arrayArea[i][j];
+                    for (int k = 0; k < tempListOrganisms.size(); k++) {
+                        Organisms organismsFirst = tempListOrganisms.get(k);
+                        for (int m = 0; m < tempListOrganisms.size(); m++) {
+                            Organisms organismsSecond = tempListOrganisms.get(m);
 
                             if (organismsFirst instanceof Predators) {
                                 if (((Predators) organismsFirst).getWeightKg() <= paramConstInstanceOrganisms.getWeight(organismsFirst)) {
                                     if (organismsSecond instanceof Herbivores) {
                                         if (RandomFood.getProbabilityFood(organismsFirst, organismsSecond) <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) {
-                                            Area.arrayArea[i][j].remove(m);
+                                            tempListOrganisms.remove(m);
                                             System.out.println("Волк выгнал кабана из игры");
-                                            m = Area.arrayArea[i][j].size() - 1;
+                                            m = tempListOrganisms.size() - 1;
                                         }
                                     }
                                 }
@@ -37,8 +40,8 @@ public class Game implements Runnable{
                             if (organismsFirst instanceof Herbivores) {
                                 if (organismsSecond instanceof Plants) {
                                     System.out.println("Кабан выгнал растение из игры");
-                                    Area.arrayArea[i][j].remove(m);
-                                    m = Area.arrayArea[i][j].size() - 1;
+                                    tempListOrganisms.remove(m);
+                                    m = tempListOrganisms.size() - 1;
                                 }
                             }
 

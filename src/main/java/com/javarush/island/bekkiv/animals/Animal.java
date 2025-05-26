@@ -22,8 +22,9 @@ public class Animal extends Organisms implements AnimalBehavior{
     }
 
     @Override
-    public int reproduce(int n) {
-        return ThreadLocalRandom.current().nextInt(n);
+    public void reproduce(Organisms organisms,  List<Organisms> listOrganisms) {
+        Organisms clone = organisms.clone();
+        listOrganisms.add(clone);
     }
 
     @Override
