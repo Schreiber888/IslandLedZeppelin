@@ -9,6 +9,7 @@ import com.javarush.island.bekkiv.herbivoresAnimals.Herbivores;
 import com.javarush.island.bekkiv.plants.Plants;
 import com.javarush.island.bekkiv.predatoryAnimals.Predators;
 
+import java.util.Arrays;
 import java.util.concurrent.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -18,6 +19,9 @@ public class Runner {
         FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
         factoryOrganisms.makeAnimals();
         //System.out.println(FactoryOrganisms.organisms);
+        Thread thread = new Thread(factoryOrganisms);
+        thread.start();
+        thread.join();
 
         ParamConstInstanceOrganisms paramConstInstanceOrganisms = new ParamConstInstanceOrganisms();
         boolean n = true;
@@ -34,7 +38,6 @@ public class Runner {
                                         if (RandomFood.getProbabilityFood(organismsFirst, organismsSecond) <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) {
                                             Area.arrayArea[i][j].remove(m);
                                             System.out.println("Волк выгнал кабана из игры");
-                                            System.out.println(Area.arrayArea.hashCode());
                                             m = 0;
                                         }
                                     }
@@ -43,6 +46,7 @@ public class Runner {
                             if (organismsFirst instanceof Herbivores) {
                                 if (organismsSecond instanceof Plants) {
                                     System.out.println("Кабан выгнал растение из игры");
+                                    System.out.println(organismsSecond.hashCode());
                                     Area.arrayArea[i][j].remove(m);
                                     m = Area.arrayArea[i][j].size();
                                 }
@@ -51,9 +55,13 @@ public class Runner {
                     }
                 }
             }
-
+            System.out.println(Area.arrayArea[0][0].size());
+            System.out.println(Area.arrayArea[0][1].size());
+            System.out.println(Area.arrayArea[1][0].size());
+            System.out.println(Area.arrayArea[1][1].size());
             n = false;
             //System.out.println(FactoryOrganisms.organisms);
         }
+
     }
 }

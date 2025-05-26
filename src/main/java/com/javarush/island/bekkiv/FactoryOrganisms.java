@@ -37,16 +37,17 @@ public class FactoryOrganisms implements Runnable {
     }
 
     public void makeAnimals (){
-        List<Organisms> listOrganisms = getListOrganisms();
-        for (int i = 0; i < ParamWolf.AMOUNT_IN_CELL; i++) {
-            listOrganisms.add(i, wolf.clone());
-        }
-        for (int i = 0; i < ParamBoar.AMOUNT_IN_CELL; i++) {
-            listOrganisms.add(i, boar.clone());
-        }
+
         //System.out.println(organisms);
         for (int i = 0; i < Area.arrayArea.length; i++) {
             for (int j = 0; j < Area.arrayArea[i].length; j++) {
+                List<Organisms> listOrganisms = getListOrganisms();
+                for (int m = 0; m < ParamWolf.AMOUNT_IN_CELL; m++) {
+                    listOrganisms.add(m, wolf.clone());
+                }
+                for (int k = 0; k < ParamBoar.AMOUNT_IN_CELL; k++) {
+                    listOrganisms.add(k, boar.clone());
+                }
                 Area.arrayArea[i][j] = listOrganisms;
             }
         }
