@@ -5,8 +5,8 @@ import com.javarush.island.bekkiv.animals.Organisms;
 import java.util.List;
 
 public interface AnimalPredatorBehavior {
-    void eat(Organisms organismsFirst, Organisms organismsSecond, List<Organisms> list);
-    void reproduce(Organisms organisms, List<Organisms> listOrganisms);
+    void eat(AnimalsPredators animalsPredators, AnimalsHerbivores animalsHerbivores, List<AnimalsHerbivores> list);
+    void reproduce(AnimalsPredators animalsPredators, List<Organisms> listOrganisms);
     int[][] move(int xCell, int yCell);
 
     Organisms build();
