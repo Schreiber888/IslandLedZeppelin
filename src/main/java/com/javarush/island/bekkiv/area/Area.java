@@ -1,12 +1,10 @@
 package com.javarush.island.bekkiv.area;
 
 import com.javarush.island.bekkiv.FactoryOrganisms;
-import com.javarush.island.bekkiv.animals.Organisms;
-import com.javarush.island.bekkiv.plants.ParamPlants;
-import com.javarush.island.bekkiv.plants.Plants;
+import com.javarush.island.bekkiv.organisms.animals.Organisms;
+import com.javarush.island.bekkiv.organisms.plants.ParamPlants;
+import com.javarush.island.bekkiv.organisms.plants.Plants;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Area {

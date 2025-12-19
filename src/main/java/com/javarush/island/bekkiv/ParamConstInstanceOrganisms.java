@@ -1,9 +1,9 @@
 package com.javarush.island.bekkiv;
 
 
-import com.javarush.island.bekkiv.animals.Organisms;
-import com.javarush.island.bekkiv.herbivoresAnimals.Boar;
-import com.javarush.island.bekkiv.predatoryAnimals.Wolf;
+import com.javarush.island.bekkiv.organisms.animals.Organisms;
+import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Boar;
+import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Wolf;
 
 public class ParamConstInstanceOrganisms {
     public float getAmountFood(Organisms organisms){

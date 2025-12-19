@@ -2,15 +2,8 @@ package com.javarush.island.bekkiv;
 
 
 
-import com.javarush.island.bekkiv.animals.Organisms;
-import com.javarush.island.bekkiv.area.Area;
 import com.javarush.island.bekkiv.game.Game;
-import com.javarush.island.bekkiv.herbivoresAnimals.Herbivores;
 
-import com.javarush.island.bekkiv.plants.Plants;
-import com.javarush.island.bekkiv.predatoryAnimals.Predators;
-
-import java.util.Arrays;
 import java.util.concurrent.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -28,7 +21,6 @@ public class Runner {
         Thread threadGame = new Thread(game);
         threadGame.start();
         threadGame.join();
-
 
     }
 }

@@ -2,15 +2,14 @@ package com.javarush.island.bekkiv;
 
 
 
-import com.javarush.island.bekkiv.animals.Organisms;
+import com.javarush.island.bekkiv.organisms.animals.Organisms;
 import com.javarush.island.bekkiv.area.Area;
-import com.javarush.island.bekkiv.area.ParamArea;
-import com.javarush.island.bekkiv.herbivoresAnimals.Boar;
-import com.javarush.island.bekkiv.herbivoresAnimals.ParamBoar;
-import com.javarush.island.bekkiv.plants.ParamPlants;
-import com.javarush.island.bekkiv.plants.Plants;
-import com.javarush.island.bekkiv.predatoryAnimals.ParamWolf;
-import com.javarush.island.bekkiv.predatoryAnimals.Wolf;
+import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Boar;
+import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.ParamBoar;
+import com.javarush.island.bekkiv.organisms.plants.ParamPlants;
+import com.javarush.island.bekkiv.organisms.plants.Plants;
+import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.ParamWolf;
+import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Wolf;
 
 import java.util.*;
 

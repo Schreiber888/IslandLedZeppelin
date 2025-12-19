@@ -2,11 +2,11 @@ package com.javarush.island.bekkiv.game;
 
 import com.javarush.island.bekkiv.ParamConstInstanceOrganisms;
 import com.javarush.island.bekkiv.RandomFood;
-import com.javarush.island.bekkiv.animals.Organisms;
+import com.javarush.island.bekkiv.organisms.animals.Organisms;
 import com.javarush.island.bekkiv.area.Area;
-import com.javarush.island.bekkiv.herbivoresAnimals.Herbivores;
-import com.javarush.island.bekkiv.plants.Plants;
-import com.javarush.island.bekkiv.predatoryAnimals.Predators;
+import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
+import com.javarush.island.bekkiv.organisms.plants.Plants;
+import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class Game implements Runnable{
                             if (organismsFirst instanceof Predators) {
                                 if (((Predators) organismsFirst).getWeightKg() <= paramConstInstanceOrganisms.getWeight(organismsFirst)) {
                                     if (organismsSecond instanceof Herbivores) {
-                                        if (RandomFood.getProbabilityFood(organismsFirst, organismsSecond) <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) {
+                                        if (RandomFood.getProbabilityFood() <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) {
                                             tempListOrganisms.remove(m);
                                             System.out.println("Волк выгнал кабана из игры");
                                             m = tempListOrganisms.size() - 1;

@@ -1,10 +1,9 @@
 package com.javarush.island.bekkiv;
 
-import com.javarush.island.bekkiv.animals.Organisms;
+import com.javarush.island.bekkiv.organisms.animals.Organisms;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomFood {
@@ -47,7 +46,7 @@ public class RandomFood {
         map.put(15, "Plants");
     }
 
-    public static int getProbabilityFood(Organisms FirstOrganism, Organisms secondOrganism) {
+    public static int getProbabilityFood() {
         final int MAX_PERCENT = 100;
         int probabilityFood;
         probabilityFood = ThreadLocalRandom.current().nextInt(MAX_PERCENT);
