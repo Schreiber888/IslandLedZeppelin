@@ -1,4 +1,4 @@
-package com.javarush.island.bekkiv.organisms.animals;
+package com.javarush.island.bekkiv.organisms;
 
 public class Organisms implements Cloneable {
     public int age;

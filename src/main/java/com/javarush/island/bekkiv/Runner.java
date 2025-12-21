@@ -11,7 +11,9 @@ import java.util.concurrent.*;
 public class Runner {
     public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
         FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
-        factoryOrganisms.makeAnimals();
+
+            factoryOrganisms.makeAnimals();
+
         //System.out.println(FactoryOrganisms.organisms);
         Thread thread = new Thread(factoryOrganisms);
         thread.start();

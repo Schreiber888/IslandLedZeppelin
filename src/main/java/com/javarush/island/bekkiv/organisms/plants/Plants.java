@@ -1,11 +1,11 @@
 package com.javarush.island.bekkiv.organisms.plants;
 
-import com.javarush.island.bekkiv.organisms.animals.Organisms;
+import com.javarush.island.bekkiv.organisms.Organisms;
 
 import java.util.concurrent.Callable;
 
 public class Plants extends Organisms implements PlantsBehavior, Callable<Integer>, ParamPlants {
-    public int amountGrass = 200;
+   //public int amountGrass = 4;
     int millis = 20;
     float weight;
     int amountInCell;
@@ -19,7 +19,7 @@ public class Plants extends Organisms implements PlantsBehavior, Callable<Intege
 
     @Override
     public int grow() {
-        return amountGrass;
+        return amountInCell;
     }
 
     @Override

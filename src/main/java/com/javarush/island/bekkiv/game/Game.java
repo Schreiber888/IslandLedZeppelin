@@ -2,7 +2,7 @@ package com.javarush.island.bekkiv.game;
 
 import com.javarush.island.bekkiv.ParamConstInstanceOrganisms;
 import com.javarush.island.bekkiv.RandomFood;
-import com.javarush.island.bekkiv.organisms.animals.Organisms;
+import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.area.Area;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
 import com.javarush.island.bekkiv.organisms.plants.Plants;

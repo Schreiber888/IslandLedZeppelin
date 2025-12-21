@@ -1,6 +1,6 @@
 package com.javarush.island.bekkiv.organismsBuilder;
 
-import com.javarush.island.bekkiv.organisms.animals.Organisms;
+import com.javarush.island.bekkiv.organisms.Organisms;
 
 import java.util.List;
 

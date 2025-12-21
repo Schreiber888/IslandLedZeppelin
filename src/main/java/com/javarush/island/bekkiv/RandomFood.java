@@ -1,6 +1,6 @@
 package com.javarush.island.bekkiv;
 
-import com.javarush.island.bekkiv.organisms.animals.Organisms;
+import com.javarush.island.bekkiv.organisms.Organisms;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,12 +53,12 @@ public class RandomFood {
         return probabilityFood;
     }
 
-    public static int getValueTableProbability(Organisms FirstOrganism, Organisms secondOrganism) {
+    public static int getValueTableProbability(Organisms firstOrganism, Organisms secondOrganism) {
         int valueTableProbability;
         int row = 0;
         int colon = 0;
         for (int i = 0; i < map.size(); i++) {
-            if (FirstOrganism.getClass().getSimpleName().equals(map.get(i)))
+            if (firstOrganism.getClass().getSimpleName().equals(map.get(i)))
                 row = i;
             if (secondOrganism.getClass().getSimpleName().equals(map.get(i))) {
                 colon = i;

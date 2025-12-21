@@ -1,5 +1,6 @@
 package com.javarush.island.bekkiv.organisms.animals;
 
+import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.organisms.animals.capabilities.AnimalBehavior;
 
 import java.util.List;
@@ -11,12 +12,14 @@ public class Animal extends Organisms implements AnimalBehavior {
     protected float amountEat;
     protected int speed;
 
-    public Animal(float weightKg, int amountAnimalCell, float amountEat, int speed) {
+    /*public Animal(float weightKg, int amountAnimalCell, float amountEat, int speed) {
         this.weightKg = weightKg;
         this.amountAnimalCell = amountAnimalCell;
         this.amountEat = amountEat;
         this.speed = speed;
-    }
+    }*/
+
+    public Animal() {}
 
     @Override
     public void eat(Organisms organismsFirst, Organisms organismsSecond, List<Organisms> list) {
@@ -67,4 +70,5 @@ public class Animal extends Organisms implements AnimalBehavior {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+
 }

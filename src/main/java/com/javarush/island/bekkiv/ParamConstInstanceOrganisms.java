@@ -1,7 +1,7 @@
 package com.javarush.island.bekkiv;
 
 
-import com.javarush.island.bekkiv.organisms.animals.Organisms;
+import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Boar;
 import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Wolf;
 
