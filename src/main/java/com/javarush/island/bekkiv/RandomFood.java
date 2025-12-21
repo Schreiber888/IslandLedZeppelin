@@ -67,4 +67,8 @@ public class RandomFood {
         valueTableProbability = arrayProbabilities[row][colon];
         return valueTableProbability;
     }
+
+    public String getStringNameAnimal(int keyMapAnimals){
+        return map.get(keyMapAnimals);
+    }
 }

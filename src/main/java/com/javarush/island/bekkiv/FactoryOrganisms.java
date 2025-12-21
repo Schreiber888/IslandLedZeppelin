@@ -21,7 +21,7 @@ public class FactoryOrganisms implements Runnable {
     //Wolf wolf = new Wolf(ParamWolf.WEIGHT, ParamWolf.AMOUNT_IN_CELL, ParamWolf.AMOUNT_EAT, ParamWolf.SPEED);
     //Boar boar = new Boar(ParamBoar.WEIGHT, ParamBoar.AMOUNT_IN_CELL, ParamBoar.AMOUNT_EAT, ParamBoar.SPEED);
     Plants plants = new Plants(ParamPlants.WEIGHT, ParamPlants.AMOUNT_IN_CELL);
-Boar boar = new Boar();
+    Boar boar = new Boar();
 
     public ArrayList<Organisms> getListOrganisms(){
         return new ArrayList<>(organisms);

@@ -10,6 +10,7 @@ import java.util.concurrent.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Runner {
     public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
+        RandomFood randomFood = new RandomFood();
         FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
 
             factoryOrganisms.makeAnimals();
