@@ -68,7 +68,7 @@ public class RandomFood {
         return valueTableProbability;
     }
 
-    public String getStringNameAnimal(int keyMapAnimals){
-        return map.get(keyMapAnimals);
+    public int sizeMapAnimals() {
+        return map.size();
     }
 }

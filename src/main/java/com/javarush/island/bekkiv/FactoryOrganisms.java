@@ -5,7 +5,9 @@ package com.javarush.island.bekkiv;
 import com.javarush.island.bekkiv.annotation.OrganismsAnnotation;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.area.Area;
+import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Boar;
+import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.ParamBoar;
 import com.javarush.island.bekkiv.organisms.plants.ParamPlants;
 import com.javarush.island.bekkiv.organisms.plants.Plants;
@@ -15,6 +17,7 @@ import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Wolf;
 import java.util.*;
 
 public class FactoryOrganisms implements Runnable {
+    RandomFood randomFood = new RandomFood();
     private List<Organisms> organisms = new ArrayList<>();
     public Map<String, Organisms> organismsMap = new HashMap<>();
     Wolf wolf = new Wolf();
@@ -22,6 +25,8 @@ public class FactoryOrganisms implements Runnable {
     //Boar boar = new Boar(ParamBoar.WEIGHT, ParamBoar.AMOUNT_IN_CELL, ParamBoar.AMOUNT_EAT, ParamBoar.SPEED);
     Plants plants = new Plants(ParamPlants.WEIGHT, ParamPlants.AMOUNT_IN_CELL);
     Boar boar = new Boar();
+    public  List<? super Animal> animals = new ArrayList<>();
+
 
     public ArrayList<Organisms> getListOrganisms(){
         return new ArrayList<>(organisms);
@@ -29,7 +34,14 @@ public class FactoryOrganisms implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(wolf);
+        /*for (int i = 0; i < randomFood.sizeMapAnimals(); i++) {
+            randomFood.getStringNameAnimal(i);//тут доделать
+            "f".
+        }*/
+
+        animals.add(wolf);
+        animals.add(boar);
+
         for (int i = 0; i < Area.arrayArea.length; i++) {
             for (int j = 0; j < Area.arrayArea[i].length; j++) {
                 Area.arrayArea[i][j].add(i, plants.clone());
