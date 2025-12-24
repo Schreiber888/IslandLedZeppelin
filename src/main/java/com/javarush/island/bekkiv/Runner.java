@@ -11,18 +11,19 @@ import java.util.concurrent.*;
 public class Runner {
     public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
         FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
-
-            factoryOrganisms.makeAnimals();
+        factoryOrganisms.makeAnimals();
 
         //System.out.println(FactoryOrganisms.organisms);
-        Thread thread = new Thread(factoryOrganisms);
+       /* Thread thread = new Thread(factoryOrganisms);
         thread.start();
-        thread.join();
+        thread.join();*/
+
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+        executorService.scheduleWithFixedDelay(factoryOrganisms, 1, 1, TimeUnit.SECONDS);
 
         Game game = new Game();
         Thread threadGame = new Thread(game);
         threadGame.start();
         threadGame.join();
-
     }
 }

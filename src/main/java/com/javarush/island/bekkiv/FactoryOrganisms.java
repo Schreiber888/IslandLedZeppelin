@@ -34,20 +34,15 @@ public class FactoryOrganisms implements Runnable {
 
     @Override
     public void run() {
-        /*for (int i = 0; i < randomFood.sizeMapAnimals(); i++) {
-            randomFood.getStringNameAnimal(i);//тут доделать
-            "f".
-        }*/
-
-        animals.add(wolf);
-        animals.add(boar);
 
         for (int i = 0; i < Area.arrayArea.length; i++) {
             for (int j = 0; j < Area.arrayArea[i].length; j++) {
-                Area.arrayArea[i][j].add(i, plants.clone());
+                for (int k = 0; k < ParamPlants.AMOUNT_IN_CELL; k++) {
+                    Area.arrayArea[i][j].add(i, plants.clone());
+                }
             }
         }
-        //System.out.println(Arrays.deepToString(Area.arrayArea));
+        System.out.println(Arrays.deepToString(Area.arrayArea));
     }
 
     public void makeAnimals () {
