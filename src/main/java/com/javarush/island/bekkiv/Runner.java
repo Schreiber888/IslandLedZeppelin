@@ -19,11 +19,15 @@ public class Runner {
         thread.join();*/
 
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-        executorService.scheduleWithFixedDelay(factoryOrganisms, 1, 1, TimeUnit.SECONDS);
+        executorService.scheduleWithFixedDelay(factoryOrganisms, 1, 3, TimeUnit.SECONDS);
+
+
 
         Game game = new Game();
         Thread threadGame = new Thread(game);
         threadGame.start();
         threadGame.join();
+
+
     }
 }
