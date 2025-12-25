@@ -62,6 +62,7 @@ public class FactoryOrganisms implements Runnable {
         }
         System.out.println(Arrays.deepToString(Area.arrayArea));
     }
+
 }
 
 

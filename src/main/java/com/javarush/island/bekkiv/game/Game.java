@@ -16,13 +16,19 @@ public class Game implements Runnable{
     public void run() {
         ParamConstInstanceOrganisms paramConstInstanceOrganisms = new ParamConstInstanceOrganisms();
         boolean n = true;
+
         while (n) {
-            for (int i = 0; i < Area.arrayArea.length; i++) {
-                for (int j = 0; j < Area.arrayArea[i].length; j++) {
+            int i = 0;
+            int j = 0;
+            int k = 0;
+            int m = 0;
+
+            for ( i = 0; i < Area.arrayArea.length; i++) {
+                for ( j = 0; j < Area.arrayArea[i].length; j++) {
                     List<Organisms> tempListOrganisms = Area.arrayArea[i][j];
-                    for (int k = 0; k < tempListOrganisms.size(); k++) {
+                    for ( k = 0; k < tempListOrganisms.size(); k++) {
                         Organisms organismsFirst = tempListOrganisms.get(k);
-                        for (int m = 0; m < tempListOrganisms.size(); m++) {
+                        for ( m = 0; m < tempListOrganisms.size(); m++) {
                             Organisms organismsSecond = tempListOrganisms.get(m);
 
                             if (organismsFirst instanceof Predators) {

@@ -25,9 +25,10 @@ public class Runner {
 
         Game game = new Game();
         Thread threadGame = new Thread(game);
-        threadGame.start();
-        threadGame.join();
-
+        //threadGame.start();
+        //threadGame.join();
+        ExecutorService executorService2 = Executors.newFixedThreadPool(1);
+        executorService2.submit(threadGame);
 
     }
 }
