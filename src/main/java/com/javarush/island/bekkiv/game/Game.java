@@ -1,5 +1,6 @@
 package com.javarush.island.bekkiv.game;
 
+import com.javarush.island.bekkiv.FactoryOrganisms;
 import com.javarush.island.bekkiv.ParamConstInstanceOrganisms;
 import com.javarush.island.bekkiv.RandomFood;
 import com.javarush.island.bekkiv.organisms.Organisms;
@@ -9,12 +10,19 @@ import com.javarush.island.bekkiv.organisms.plants.Plants;
 import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
 
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Game implements Runnable{
 
     @Override
     public void run() {
         ParamConstInstanceOrganisms paramConstInstanceOrganisms = new ParamConstInstanceOrganisms();
+        FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
+        factoryOrganisms.makeAnimals();
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+        executorService.scheduleWithFixedDelay(factoryOrganisms, 0, 3, TimeUnit.SECONDS);
         boolean n = true;
 
         while (n) {
@@ -60,7 +68,7 @@ public class Game implements Runnable{
             System.out.println(Area.arrayArea[1][0].size());
             System.out.println(Area.arrayArea[1][1].size());
 
-            n = false;
+            n = true;
             //System.out.println(FactoryOrganisms.organisms);
         }
     }
