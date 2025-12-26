@@ -19,7 +19,7 @@ public class Runner {
         thread.join();*/
 
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-        executorService.scheduleWithFixedDelay(factoryOrganisms, 1, 3, TimeUnit.SECONDS);
+        executorService.scheduleWithFixedDelay(factoryOrganisms, 1, 30000, TimeUnit.SECONDS);
 
 
 
@@ -27,8 +27,10 @@ public class Runner {
         Thread threadGame = new Thread(game);
         //threadGame.start();
         //threadGame.join();
-        ExecutorService executorService2 = Executors.newFixedThreadPool(1);
-        executorService2.submit(threadGame);
+        threadGame.start();
+        threadGame.join();
+
+
 
     }
 }
