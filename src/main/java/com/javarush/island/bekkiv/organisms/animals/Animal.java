@@ -12,12 +12,12 @@ import com.javarush.island.khmelov.entity.organizm.Organism;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Animal extends Organisms implements Eatable {
+public class Animal extends Organisms {
     protected float weightKg; //
     protected int amountAnimalCell;
     protected float amountEat;
     protected int speed;
-
+    ParamConstInstanceOrganisms paramConstInstanceOrganisms = new ParamConstInstanceOrganisms();
     /*public Animal(float weightKg, int amountAnimalCell, float amountEat, int speed) {
         this.weightKg = weightKg;
         this.amountAnimalCell = amountAnimalCell;
@@ -27,10 +27,7 @@ public class Animal extends Organisms implements Eatable {
 
     public Animal() {}
 
-    @Override
-    public void eat(Organism organismsFirst, Organism organismsSecond, List<Organisms> tempListOrganisms) {
 
-    }
 
     /*@Override
     public void reproduce(Organisms organisms,  List<Organisms> listOrganisms) {
@@ -76,5 +73,6 @@ public class Animal extends Organisms implements Eatable {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+
 
 }

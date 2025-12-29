@@ -2,12 +2,10 @@ package com.javarush.island.bekkiv;
 
 
 
-import com.javarush.island.bekkiv.annotation.OrganismsAnnotation;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.area.Area;
 import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Boar;
-import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.ParamBoar;
 import com.javarush.island.bekkiv.organisms.plants.ParamPlants;
 import com.javarush.island.bekkiv.organisms.plants.Plants;
@@ -26,6 +24,7 @@ public class FactoryOrganisms implements Runnable {
     Plants plants = new Plants(ParamPlants.WEIGHT, ParamPlants.AMOUNT_IN_CELL);
     Boar boar = new Boar();
     public  List<? super Animal> animals = new ArrayList<>();
+    public Map<Integer, List<Organisms>> mapAnimals = new HashMap<>();
 
 
     public ArrayList<Organisms> getListOrganisms(){
@@ -61,6 +60,14 @@ public class FactoryOrganisms implements Runnable {
             }
         }
         System.out.println(Arrays.deepToString(Area.arrayArea));
+
+        int numberArea = 0;
+        for (int i = 0; i < Area.arrayArea.length; i++) {
+            for (int j = 0; j < Area.arrayArea[i].length; j++) {
+                    mapAnimals.put(numberArea, Area.arrayArea[i][j]);
+                    numberArea ++;
+            }
+        }
     }
 
 }

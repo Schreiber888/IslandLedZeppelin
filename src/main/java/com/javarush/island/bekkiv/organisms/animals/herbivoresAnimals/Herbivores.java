@@ -1,12 +1,30 @@
 package com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals;
 
 
+import com.javarush.island.bekkiv.RandomFood;
+import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.organisms.animals.Animal;
+import com.javarush.island.bekkiv.organisms.animals.capabilities.Eatable;
+import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
+import com.javarush.island.bekkiv.organisms.plants.Plants;
 
-public class Herbivores extends Animal {
+import java.util.List;
+
+public class Herbivores extends Animal implements Eatable {
+
+    @Override
+    public void eat(Animal organismsFirst, List<Organisms> listOrganisms) {
+        for (int i = 0; i < listOrganisms.size(); i++) {
+            Organisms organismsSecond =  listOrganisms.get(i);
+            if (organismsSecond instanceof Plants) {
+                if (RandomFood.getProbabilityFood() <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) { //тут может ошибка
+                    listOrganisms.remove(i);
+                    System.out.println("Волк выгнал кабана из игры");
+                    i = listOrganisms.size() - 1;
+                }
+            }
+        }
+    }
 
 
-    /*public Herbivores(float weightKg, int amountAnimalCell, float amountEat, int speed) {
-        super(weightKg, amountAnimalCell, amountEat, speed);
-    }*/
 }

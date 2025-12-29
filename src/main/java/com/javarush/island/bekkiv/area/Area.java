@@ -14,8 +14,7 @@ public class Area {
     FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
 
     public void go() {
-
-
         //System.out.println(Arrays.deepToString(Area.arrayArea));
     }
+
 }
