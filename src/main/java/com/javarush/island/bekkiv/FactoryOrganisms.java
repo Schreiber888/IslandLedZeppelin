@@ -72,8 +72,8 @@ public class FactoryOrganisms implements Runnable {
     public static float getParameterArgumentsWeightKg(Organisms organismsFirst){
         Class<? extends Organisms> organismsClass = organismsFirst.getClass();
         try {
-            Field nameField = organismsClass.getDeclaredField("weightKg");
-            nameField.setAccessible(true);
+            Field nameField = organismsClass.getField("weightKg");
+            //nameField.setAccessible(true); это если хотим редактированть наверно
             Object weightKg = nameField.get(organismsFirst);
             return (float) weightKg;
         } catch (NoSuchFieldException | IllegalAccessException e) {

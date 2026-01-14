@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Animal extends Organisms {
-    protected float weightKg; //
-    protected int amountAnimalCell;
-    protected float amountEat;
-    protected int speed;
+    public float weightKg; //
+    public int amountAnimalCell;
+    public float amountEat;
+    public int speed;
     //ParamConstInstanceOrganisms paramConstInstanceOrganisms = new ParamConstInstanceOrganisms();
     /*public Animal(float weightKg, int amountAnimalCell, float amountEat, int speed) {
         this.weightKg = weightKg;

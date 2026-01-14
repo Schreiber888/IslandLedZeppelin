@@ -3,6 +3,7 @@ package com.javarush.island.bekkiv.game;
 import com.javarush.island.bekkiv.FactoryOrganisms;
 import com.javarush.island.bekkiv.ParamConstInstanceOrganisms;
 import com.javarush.island.bekkiv.RandomFood;
+import com.javarush.island.bekkiv.area.Constant;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.area.Area;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
@@ -40,11 +41,13 @@ public class Game implements Runnable {
                     Organisms organismsFirst = listOrganisms.get(j);
 
                     if (organismsFirst instanceof Predators) {
-                        if (((Predators) organismsFirst).getWeightKg() <= ((Predators) organismsFirst).getWeightKg() * ANIMAL_HUNGRY
-                                && ((Predators) organismsFirst).getWeightKg() <= ((Predators) organismsFirst).getWeightKg() * ANIMAL_FULL) {
+                        float parameterArgumentsWeightKg = FactoryOrganisms.getParameterArgumentsWeightKg(organismsFirst);
+                        System.out.println("Вес животного параметр " + parameterArgumentsWeightKg);
+                        if (((Predators) organismsFirst).getWeightKg() <= parameterArgumentsWeightKg * Constant.ANIMAL_HUNGRY) {
                             Predators predator = ((Predators) organismsFirst);
                             predator.eat(predator, listOrganisms);
                         }
+                        System.out.println("а теперь вес животного " + ((Predators) organismsFirst).getWeightKg());
                     }
 
                     if (organismsFirst instanceof Herbivores) {
@@ -103,5 +106,13 @@ public class Game implements Runnable {
         }
     }*/
 
-
+/*if (organismsFirst instanceof Predators) {
+float parameterArgumentsWeightKg = FactoryOrganisms.getParameterArgumentsWeightKg(organismsFirst);
+                        System.out.println("Вес животного параметр " + " " + parameterArgumentsWeightKg);
+                        if (((Predators) organismsFirst).getWeightKg() <= ((Predators) organismsFirst).getWeightKg() * ANIMAL_HUNGRY
+                                && ((Predators) organismsFirst).getWeightKg() <= ((Predators) organismsFirst).getWeightKg() * ANIMAL_FULL) {
+Predators predator = ((Predators) organismsFirst);
+                            predator.eat(predator, listOrganisms);
+                        }
+                                }*/
 
