@@ -2,6 +2,7 @@ package com.javarush.island.bekkiv.organisms.animals.predatoryAnimals;
 
 
 import com.javarush.island.bekkiv.RandomFood;
+import com.javarush.island.bekkiv.area.Constant;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.capabilities.Eatable;
@@ -23,10 +24,10 @@ public abstract class Predators extends Animal implements Eatable {
             if (organismsSecond instanceof Herbivores) {
                 if (RandomFood.getProbabilityFood() <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) {
                     System.out.println("Волк вес: " + " " + organismsFirst.getWeightKg());
-                    if ((organismsFirst.getWeightKg() * 0.2) >= ((Herbivores) organismsSecond).getWeightKg()) {
-                        organismsFirst.setWeightKg(organismsFirst.getWeightKg() + (organismsFirst.getWeightKg() * 0.2F));
-                    } else {
+                    if ((organismsFirst.getWeightKg() * Constant.COEFFICIENT_GAIN_WEIGHT) >= ((Herbivores) organismsSecond).getWeightKg()) {
                         organismsFirst.setWeightKg(organismsFirst.getWeightKg() + ((Herbivores) organismsSecond).getWeightKg());
+                    } else {
+                        organismsFirst.setWeightKg(organismsFirst.getWeightKg() + (organismsFirst.getWeightKg() * Constant.COEFFICIENT_GAIN_WEIGHT));
                     }
                     System.out.println("Волк выгнал кабана из игры");
                     System.out.println("Волк вес: " + " " + organismsFirst.getWeightKg());
