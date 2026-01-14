@@ -12,14 +12,18 @@ import java.util.List;
 
 public class Herbivores extends Animal implements Eatable {
 
+    public Herbivores(float weightKg, int amountAnimalCell, float amountEat, int speed) {
+        super(weightKg, amountAnimalCell, amountEat, speed);
+    }
+
     @Override
     public void eat(Animal organismsFirst, List<Organisms> listOrganisms) {
         for (int i = 0; i < listOrganisms.size(); i++) {
-            Organisms organismsSecond =  listOrganisms.get(i);
+            Organisms organismsSecond = listOrganisms.get(i);
             if (organismsSecond instanceof Plants) {
                 if (RandomFood.getProbabilityFood() <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) { //тут может ошибка
                     listOrganisms.remove(i);
-                    System.out.println("Волк выгнал кабана из игры");
+                    System.out.println("Кабан выгнал растение из игры");
                     i = listOrganisms.size() - 1;
                 }
             }

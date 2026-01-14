@@ -1,7 +1,11 @@
 package com.javarush.island.bekkiv.organisms;
 
-public class Organisms implements Cloneable {
-    public int age;
+
+import com.javarush.island.bekkiv.annotation.OrganismsAnnotation;
+
+
+public abstract class Organisms implements Cloneable {
+    //public int age;
 
     @Override
     public Organisms clone() {

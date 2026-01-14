@@ -6,4 +6,7 @@ import com.javarush.island.bekkiv.organisms.animals.Animal;
 public class Mouse extends Animal {
 
 
+    public Mouse(float weightKg, int amountAnimalCell, float amountEat, int speed) {
+        super(weightKg, amountAnimalCell, amountEat, speed);
+    }
 }

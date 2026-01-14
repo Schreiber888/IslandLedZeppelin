@@ -7,6 +7,9 @@ import com.javarush.island.bekkiv.annotation.OrganismsAnnotation;
 public class Wolf extends Predators implements ParamWolf {
 
 
+    public Wolf(float weightKg, int amountAnimalCell, float amountEat, int speed) {
+        super(weightKg, amountAnimalCell, amountEat, speed);
+    }
 
 
 }
