@@ -14,6 +14,7 @@ import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.ParamWolf;
 import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Wolf;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
@@ -24,7 +25,7 @@ public class FactoryOrganisms implements Runnable {
     public  List<? super Animal> animals = new ArrayList<>();
     public Map<Integer, List<Organisms>> mapAnimals = new HashMap<>();
 
-    private final Class<?>[] TYPES = {Wolf.class, Boar.class};
+    private static final Class<?>[] TYPES = {Wolf.class, Boar.class};
 
 
     public ArrayList<Organisms> getListOrganisms(){
@@ -66,6 +67,19 @@ public class FactoryOrganisms implements Runnable {
                     numberArea ++;
             }
         }
+    }
+
+    public static float getParameterArgumentsWeightKg(Organisms organismsFirst){
+        Class<? extends Organisms> organismsClass = organismsFirst.getClass();
+        try {
+            Field nameField = organismsClass.getDeclaredField("weightKg");
+            nameField.setAccessible(true);
+            Object weightKg = nameField.get(organismsFirst);
+            return (float) weightKg;
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);//доработать исключение
+        }
+
     }
 
     private Organisms[] createObject(Class<?>[] TYPES) {

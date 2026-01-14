@@ -40,8 +40,8 @@ public class Game implements Runnable {
                     Organisms organismsFirst = listOrganisms.get(j);
 
                     if (organismsFirst instanceof Predators) {
-                        if (((Predators) organismsFirst).getAmountEat() >= ((Predators) organismsFirst).getAmountEat() * ANIMAL_HUNGRY
-                                && ((Predators) organismsFirst).getAmountEat() <= ((Predators) organismsFirst).getAmountEat() * ANIMAL_FULL) {
+                        if (((Predators) organismsFirst).getWeightKg() <= ((Predators) organismsFirst).getWeightKg() * ANIMAL_HUNGRY
+                                && ((Predators) organismsFirst).getWeightKg() <= ((Predators) organismsFirst).getWeightKg() * ANIMAL_FULL) {
                             Predators predator = ((Predators) organismsFirst);
                             predator.eat(predator, listOrganisms);
                         }
