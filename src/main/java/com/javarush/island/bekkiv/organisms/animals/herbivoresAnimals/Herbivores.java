@@ -28,6 +28,8 @@ public abstract class Herbivores extends Animal implements Eatable {
                         organismsFirst.setWeightKg(organismsFirst.getWeightKg() + Plants.WEIGHT);
                     } else {
                         organismsFirst.setWeightKg(organismsFirst.getWeightKg() + (organismsFirst.getWeightKg() * Constant.COEFFICIENT_GAIN_WEIGHT));
+                        listOrganisms.remove(i);
+                        i = listOrganisms.size() - 1;
                     }
                     System.out.println("Кабан выгнал растение из игры");
                     System.out.println("Кабан вес: " + " " + organismsFirst.getWeightKg());

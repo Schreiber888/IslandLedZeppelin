@@ -1,7 +1,6 @@
 package com.javarush.island.bekkiv;
 
 
-
 import com.javarush.island.bekkiv.game.Game;
 
 import java.util.concurrent.*;
@@ -29,7 +28,6 @@ public class Runner {
         //threadGame.join();
         threadGame.start();
         threadGame.join();
-
 
 
     }

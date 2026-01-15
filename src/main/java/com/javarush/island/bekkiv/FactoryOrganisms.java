@@ -27,7 +27,7 @@ public class FactoryOrganisms implements Runnable {
     public Map<String, Organisms> organismsMap = new HashMap<>();
     Plants plants = new Plants(ParamPlants.WEIGHT, ParamPlants.AMOUNT_IN_CELL);
     public  List<? super Animal> animals = new ArrayList<>();
-    public Map<Integer, List<Organisms>> mapAnimals = new HashMap<>();
+    public static Map<Integer, List<Organisms>> mapAnimals = new HashMap<>();
 
     private static final Class<?>[] TYPES = {Wolf.class, Boar.class};
 
@@ -58,7 +58,7 @@ public class FactoryOrganisms implements Runnable {
                 Area.arrayArea[i][j] = listOrganisms;
             }
         }
-        System.out.println(Arrays.deepToString(Area.arrayArea));
+        //System.out.println(Arrays.deepToString(Area.arrayArea));
 
         int numberArea = 0;
         for (int i = 0; i < Area.arrayArea.length; i++) {

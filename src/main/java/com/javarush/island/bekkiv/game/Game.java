@@ -14,6 +14,7 @@ import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public class Game implements Runnable {
@@ -22,27 +23,27 @@ public class Game implements Runnable {
     @Override
     public void run() {
         //ParamConstInstanceOrganisms paramConstInstanceOrganisms = new ParamConstInstanceOrganisms();
-        FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
-        factoryOrganisms.makeAnimals();
-        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-        executorService.scheduleWithFixedDelay(factoryOrganisms, 0, 3, TimeUnit.SECONDS);
-        //boolean n = true;
+        boolean n = true;
 
+        while (n) {
 
-        //while (n) {
+            FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
+            factoryOrganisms.makeAnimals();
+            ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+            ScheduledFuture<?> scheduledFuture = executorService.scheduleWithFixedDelay(factoryOrganisms, 0, 3, TimeUnit.SECONDS);
 
             int numberArea;
             int j;
-            System.out.println("размер острова" + " " + factoryOrganisms.mapAnimals.size());
-            for (numberArea = 0; numberArea < factoryOrganisms.mapAnimals.size(); numberArea++) {
-                List<Organisms> listOrganisms = factoryOrganisms.mapAnimals.get(numberArea);
+            System.out.println("размер острова" + " " + FactoryOrganisms.mapAnimals.size());
+            for (numberArea = 0; numberArea < FactoryOrganisms.mapAnimals.size(); numberArea++) {
+                List<Organisms> listOrganisms = FactoryOrganisms.mapAnimals.get(numberArea);
                 for (j = 0; j < listOrganisms.size(); j++) {
                     Organisms organismsFirst = listOrganisms.get(j);
 
                     if (organismsFirst instanceof Predators) {
                         float parameterArgumentsWeightKg = FactoryOrganisms.getParameterArgumentsWeightKg(organismsFirst);
                         System.out.println("Вес животного параметр " + parameterArgumentsWeightKg);
-                        if (((Predators) organismsFirst).getWeightKg() >= parameterArgumentsWeightKg * Constant.ANIMAL_HUNGRY) {
+                        if (((Predators) organismsFirst).getWeightKg() <= parameterArgumentsWeightKg * Constant.ANIMAL_HUNGRY) {
                             Predators predator = ((Predators) organismsFirst);
                             predator.eat(predator, listOrganisms);
                         }
@@ -51,7 +52,7 @@ public class Game implements Runnable {
 
                     if (organismsFirst instanceof Herbivores) {
                         float parameterArgumentsWeightKg = FactoryOrganisms.getParameterArgumentsWeightKg(organismsFirst);
-                        if (((Herbivores) organismsFirst).getWeightKg() >= parameterArgumentsWeightKg * Constant.ANIMAL_HUNGRY) {
+                        if (((Herbivores) organismsFirst).getWeightKg() <= parameterArgumentsWeightKg * Constant.ANIMAL_HUNGRY) {
                             Herbivores herbivore = (Herbivores) organismsFirst;
                             herbivore.eat(herbivore, listOrganisms);
                         }
@@ -64,11 +65,11 @@ public class Game implements Runnable {
                 //System.out.println(Area.arrayArea[1][0].size());
                 //System.out.println(Area.arrayArea[1][1].size());
 
-               // n = false;
-                //System.out.println(FactoryOrganisms.organisms);
+                //n = false;
             }
-       // }
+            // }
 
+        }
     }
 }
 
