@@ -56,7 +56,9 @@ public class FactoryOrganisms implements Runnable {
                     ((Predators) organisms).setWeightKg(((Predators) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
                     System.out.println("Вес волка стал: " + ((Predators) organisms).getWeightKg());
                 } else if (organisms instanceof Herbivores) {
+                    System.out.println("Вес кабана был: " + ((Herbivores) organisms).getWeightKg());
                     ((Herbivores) organisms).setWeightKg(((Herbivores) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
+                    System.out.println("Вес кабана стал: " + ((Herbivores) organisms).getWeightKg());
                 } //else throw new IllegalArgumentException("При уменьшении веса животного возникло исключение - такого вида животного не существует");
             }
         }

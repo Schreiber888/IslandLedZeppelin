@@ -43,7 +43,7 @@ public class Game implements Runnable {
                     if (organismsFirst instanceof Predators) {
                         float parameterArgumentsWeightKg = FactoryOrganisms.getParameterArgumentsWeightKg(organismsFirst);
                         System.out.println("Вес животного параметр " + parameterArgumentsWeightKg);
-                        if (((Predators) organismsFirst).getWeightKg() <= parameterArgumentsWeightKg * Constant.ANIMAL_HUNGRY) {
+                        if (((Predators) organismsFirst).getWeightKg() >= parameterArgumentsWeightKg * Constant.ANIMAL_HUNGRY) {
                             Predators predator = ((Predators) organismsFirst);
                             predator.eat(predator, listOrganisms);
                         }
@@ -51,8 +51,8 @@ public class Game implements Runnable {
                     }
 
                     if (organismsFirst instanceof Herbivores) {
-                        if (((Herbivores) organismsFirst).getAmountEat() >= ((Herbivores) organismsFirst).getAmountEat() * ANIMAL_HUNGRY
-                                && ((Herbivores) organismsFirst).getAmountEat() <= ((Herbivores) organismsFirst).getAmountEat() * ANIMAL_FULL) {
+                        float parameterArgumentsWeightKg = FactoryOrganisms.getParameterArgumentsWeightKg(organismsFirst);
+                        if (((Herbivores) organismsFirst).getWeightKg() >= parameterArgumentsWeightKg * Constant.ANIMAL_HUNGRY) {
                             Herbivores herbivore = (Herbivores) organismsFirst;
                             herbivore.eat(herbivore, listOrganisms);
                         }
