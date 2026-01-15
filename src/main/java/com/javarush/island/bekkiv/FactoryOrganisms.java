@@ -39,29 +39,10 @@ public class FactoryOrganisms implements Runnable {
     @Override
     public void run() {
 
-        for (int i = 0; i < Area.arrayArea.length; i++) {
-            for (int j = 0; j < Area.arrayArea[i].length; j++) {
-                for (int k = 0; k < ParamPlants.AMOUNT_IN_CELL; k++) {
-                    Area.arrayArea[i][j].add(i, plants.clone());
-                }
-            }
-        }
+        growPlants();
         System.out.println(Arrays.deepToString(Area.arrayArea));
         //---------тут продолжить--------//
-        for (int numberArea = 0; numberArea < mapAnimals.size(); numberArea++) {
-            List<Organisms> organismsList = mapAnimals.get(numberArea);
-            for (Organisms organisms : organismsList) {
-                if (organisms instanceof Predators) {
-                    System.out.println("Вес волка был: " + ((Predators) organisms).getWeightKg());
-                    ((Predators) organisms).setWeightKg(((Predators) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
-                    System.out.println("Вес волка стал: " + ((Predators) organisms).getWeightKg());
-                } else if (organisms instanceof Herbivores) {
-                    System.out.println("Вес кабана был: " + ((Herbivores) organisms).getWeightKg());
-                    ((Herbivores) organisms).setWeightKg(((Herbivores) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
-                    System.out.println("Вес кабана стал: " + ((Herbivores) organisms).getWeightKg());
-                } //else throw new IllegalArgumentException("При уменьшении веса животного возникло исключение - такого вида животного не существует");
-            }
-        }
+        weightLossAnimals();
     }
 
     public void makeAnimals () {
@@ -126,28 +107,32 @@ public class FactoryOrganisms implements Runnable {
         }
     }
 
+    public void weightLossAnimals(){
+    for (int numberArea = 0; numberArea < mapAnimals.size(); numberArea++) {
+        List<Organisms> organismsList = mapAnimals.get(numberArea);
+        for (Organisms organisms : organismsList) {
+            if (organisms instanceof Predators) {
+                System.out.println("Вес волка был: " + ((Predators) organisms).getWeightKg());
+                ((Predators) organisms).setWeightKg(((Predators) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
+                System.out.println("Вес волка стал: " + ((Predators) organisms).getWeightKg());
+            } else if (organisms instanceof Herbivores) {
+                System.out.println("Вес кабана был: " + ((Herbivores) organisms).getWeightKg());
+                ((Herbivores) organisms).setWeightKg(((Herbivores) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
+                System.out.println("Вес кабана стал: " + ((Herbivores) organisms).getWeightKg());
+            } //else throw new IllegalArgumentException("При уменьшении веса животного возникло исключение - такого вида животного не существует");
+        }
+    }
+}
 
-
+    private void growPlants(){
+        for (int i = 0; i < Area.arrayArea.length; i++) {
+            for (int j = 0; j < Area.arrayArea[i].length; j++) {
+                for (int k = 0; k < ParamPlants.AMOUNT_IN_CELL; k++) {
+                    Area.arrayArea[i][j].add(i, plants.clone());
+                }
+            }
+        }
+    }
 
 }
 
-
-/*
-public void makeAnimals (Organisms organism) {
-
-        //System.out.println(organisms);
-        for (int i = 0; i < Area.arrayArea.length; i++) {
-            for (int j = 0; j < Area.arrayArea[i].length; j++) {
-                List<Organisms> listOrganisms = getListOrganisms();
-                for (int m = 0; m < ParamWolf.AMOUNT_IN_CELL; m++) {
-                    listOrganisms.add(m, wolf.clone());
-                }
-                for (int k = 0; k < ParamBoar.AMOUNT_IN_CELL; k++) {
-                    listOrganisms.add(k, boar.clone());
-                }
-                Area.arrayArea[i][j] = listOrganisms;
-            }
-        }
-        System.out.println(Arrays.deepToString(Area.arrayArea));
-    }
-                    }*/
