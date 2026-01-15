@@ -42,18 +42,22 @@ public class FactoryOrganisms implements Runnable {
         growPlants();
         System.out.println(Arrays.deepToString(Area.arrayArea));
         //---------тут продолжить--------//
-        weightLossAnimals();
+        //weightLossAnimals();
     }
 
-    public void makeAnimals () {
+    public void makeAnimals () throws NoSuchFieldException, IllegalAccessException {
         final Organisms[] PROTOTYPES = createObject(TYPES);
 
         //System.out.println(organisms);
         for (int i = 0; i < Area.arrayArea.length; i++) {
             for (int j = 0; j < Area.arrayArea[i].length; j++) {
                 List<Organisms> listOrganisms = getListOrganisms();
-                for (Organisms prototype : PROTOTYPES) {
-                    listOrganisms.add(prototype.clone());
+                for (Organisms prototype : PROTOTYPES) {    //надо клонировать столько раз, сколько животных положено
+                    Field amountAnimalCellField = prototype.getClass().getField("amountAnimalCell");
+                    int amountAnimalCell = (int) amountAnimalCellField.get(prototype);
+                    for (int k = 0; k < amountAnimalCell; k++) {
+                        listOrganisms.add(prototype.clone());
+                    }
                 }
                 Area.arrayArea[i][j] = listOrganisms;
             }
@@ -107,10 +111,11 @@ public class FactoryOrganisms implements Runnable {
         }
     }
 
-    public void weightLossAnimals(){
+    public static void weightLossAnimals(){
     for (int numberArea = 0; numberArea < mapAnimals.size(); numberArea++) {
         List<Organisms> organismsList = mapAnimals.get(numberArea);
-        for (Organisms organisms : organismsList) {
+        for (int i = 0; i < organismsList.size(); i++) {
+            Organisms organisms = organismsList.get(i);
             if (organisms instanceof Predators) {
                 System.out.println("Вес волка был: " + ((Predators) organisms).getWeightKg());
                 ((Predators) organisms).setWeightKg(((Predators) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
@@ -121,6 +126,11 @@ public class FactoryOrganisms implements Runnable {
                 System.out.println("Вес кабана стал: " + ((Herbivores) organisms).getWeightKg());
             } //else throw new IllegalArgumentException("При уменьшении веса животного возникло исключение - такого вида животного не существует");
         }
+        //for (Organisms organisms : organismsList) {
+
+
+
+        //}
     }
 }
 

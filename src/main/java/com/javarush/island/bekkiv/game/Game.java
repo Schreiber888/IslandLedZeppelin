@@ -24,13 +24,22 @@ public class Game implements Runnable {
     public void run() {
         //ParamConstInstanceOrganisms paramConstInstanceOrganisms = new ParamConstInstanceOrganisms();
         boolean n = true;
+        FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
+        try {
+            factoryOrganisms.makeAnimals();
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+        executorService.scheduleWithFixedDelay(factoryOrganisms, 0, 300, TimeUnit.SECONDS);
 
         while (n) {
 
-            FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
-            factoryOrganisms.makeAnimals();
-            ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-            ScheduledFuture<?> scheduledFuture = executorService.scheduleWithFixedDelay(factoryOrganisms, 0, 3, TimeUnit.SECONDS);
+
+
+
+            FactoryOrganisms.weightLossAnimals();
 
             int numberArea;
             int j;
@@ -42,12 +51,12 @@ public class Game implements Runnable {
 
                     if (organismsFirst instanceof Predators) {
                         float parameterArgumentsWeightKg = FactoryOrganisms.getParameterArgumentsWeightKg(organismsFirst);
-                        System.out.println("Вес животного параметр " + parameterArgumentsWeightKg);
+                        //System.out.println("Вес животного параметр " + parameterArgumentsWeightKg);
                         if (((Predators) organismsFirst).getWeightKg() <= parameterArgumentsWeightKg * Constant.ANIMAL_HUNGRY) {
                             Predators predator = ((Predators) organismsFirst);
                             predator.eat(predator, listOrganisms);
                         }
-                        System.out.println("а теперь вес животного " + ((Predators) organismsFirst).getWeightKg());
+                        //System.out.println("а теперь вес животного " + ((Predators) organismsFirst).getWeightKg());
                     }
 
                     if (organismsFirst instanceof Herbivores) {
@@ -60,8 +69,8 @@ public class Game implements Runnable {
                     }
                 }
 
-                System.out.println(Area.arrayArea[0][0].size());
-                System.out.println(Area.arrayArea[0][1].size());
+                System.out.println("Размер ареала 1: " + Area.arrayArea[0][0].size());
+                System.out.println("Размер ареала 2: " + Area.arrayArea[0][1].size());
                 //System.out.println(Area.arrayArea[1][0].size());
                 //System.out.println(Area.arrayArea[1][1].size());
 
