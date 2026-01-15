@@ -3,15 +3,19 @@ package com.javarush.island.bekkiv;
 
 
 import com.javarush.island.bekkiv.annotation.OrganismsAnnotation;
+import com.javarush.island.bekkiv.area.Constant;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.area.Area;
 import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Boar;
+import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.ParamBoar;
+import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
 import com.javarush.island.bekkiv.organisms.plants.ParamPlants;
 import com.javarush.island.bekkiv.organisms.plants.Plants;
 import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.ParamWolf;
 import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Wolf;
+import com.javarush.island.khmelov.entity.organizm.animals.predators.Predator;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -43,6 +47,19 @@ public class FactoryOrganisms implements Runnable {
             }
         }
         System.out.println(Arrays.deepToString(Area.arrayArea));
+        //---------тут продолжить--------//
+        for (int numberArea = 0; numberArea < mapAnimals.size(); numberArea++) {
+            List<Organisms> organismsList = mapAnimals.get(numberArea);
+            for (Organisms organisms : organismsList) {
+                if (organisms instanceof Predators) {
+                    System.out.println("Вес волка был: " + ((Predators) organisms).getWeightKg());
+                    ((Predators) organisms).setWeightKg(((Predators) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
+                    System.out.println("Вес волка стал: " + ((Predators) organisms).getWeightKg());
+                } else if (organisms instanceof Herbivores) {
+                    ((Herbivores) organisms).setWeightKg(((Herbivores) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
+                } //else throw new IllegalArgumentException("При уменьшении веса животного возникло исключение - такого вида животного не существует");
+            }
+        }
     }
 
     public void makeAnimals () {
