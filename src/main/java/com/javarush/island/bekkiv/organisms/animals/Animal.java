@@ -29,7 +29,9 @@ public abstract class Animal extends Organisms implements ReproducibleAnimals {
 
     @Override
     public void reproduce(Animal organismsFirst, List<Organisms> listOrganisms) {
-
+        System.out.println("Размер до клона " + listOrganisms.size());
+        listOrganisms.add(organismsFirst.clone());
+        System.out.println("Размер после клона " + listOrganisms.size());
     }
 
 /*@Override

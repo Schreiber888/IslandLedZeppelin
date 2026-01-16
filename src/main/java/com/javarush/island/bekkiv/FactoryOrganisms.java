@@ -26,7 +26,7 @@ public class FactoryOrganisms implements Runnable {
     public List<? super Animal> animals = new ArrayList<>();
     public static Map<Integer, List<Organisms>> mapAnimals = new HashMap<>();
 
-    private static final Class<?>[] TYPES = {Wolf.class, Boar.class};
+    public static final Class<?>[] TYPES = {Wolf.class, Boar.class};
 
 
     public ArrayList<Organisms> getListOrganisms() {

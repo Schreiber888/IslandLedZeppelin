@@ -21,6 +21,7 @@ public abstract class Herbivores extends Animal implements Eatable {
 
     @Override
     public void eat(Animal organismsFirst, List<Organisms> listOrganisms) {
+
         for (int i = 0; i < listOrganisms.size(); i++) {
             Organisms organismsSecond = listOrganisms.get(i);
             float parameterArgumentsWeightKg = FactoryOrganisms.getParameterArgumentsWeightKg(organismsFirst);
@@ -42,6 +43,8 @@ public abstract class Herbivores extends Animal implements Eatable {
                     //i = listOrganisms.size() - 1;
                 }
             }
+
+
         }
     }
 

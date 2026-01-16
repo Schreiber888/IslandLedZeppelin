@@ -6,6 +6,7 @@ import com.javarush.island.bekkiv.RandomFood;
 import com.javarush.island.bekkiv.area.Constant;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.area.Area;
+import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
 import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Wolf;
 import com.javarush.island.bekkiv.organisms.plants.Plants;
@@ -60,6 +61,13 @@ public class Game implements Runnable {
                         }
 
                     }
+                    if (organismsFirst instanceof Predators || organismsFirst instanceof Herbivores) {
+                        if (RandomFood.getProbabilityFood() >= Constant.PROBABILITY_REPRODUCTION) {
+                            Animal animal = (Animal) organismsFirst;
+                            animal.reproduce(animal, listOrganisms);
+                            System.out.println("кто-то размножился " + organismsFirst.getClass().getName());
+                        }
+                    }
                 }
 
                 System.out.println("Размер ареала 1: " + Area.arrayArea[0][0].size());
@@ -69,7 +77,11 @@ public class Game implements Runnable {
 
                 //n = false;
             }
+
+
+
             // }
+
             n++;
         }
     }
