@@ -1,10 +1,10 @@
 package com.javarush.island.bekkiv.organisms.animals.capabilities;
 
 import com.javarush.island.bekkiv.organisms.Organisms;
-import com.javarush.island.bekkiv.organisms.animals.T;
+import com.javarush.island.bekkiv.organisms.animals.Animal;
 
 import java.util.List;
 @FunctionalInterface
 public interface Eatable {
-    void eat(T organismsFirst, List<Organisms> listOrganisms);
+    void eat(Animal organismsFirst, List<Organisms> listOrganisms);
 }

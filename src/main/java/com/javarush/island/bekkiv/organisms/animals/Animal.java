@@ -5,7 +5,7 @@ import com.javarush.island.bekkiv.organisms.animals.capabilities.ReproducibleAni
 
 import java.util.List;
 
-public abstract class T extends Organisms implements ReproducibleAnimals {
+public abstract class Animal extends Organisms implements ReproducibleAnimals {
     public float weightKg; //
     public int amountAnimalCell;
     public float amountEat;
@@ -20,7 +20,7 @@ public abstract class T extends Organisms implements ReproducibleAnimals {
 
     //public Animal() {}
 
-    public T(float weightKg, int amountAnimalCell, float amountEat, int speed) {
+    public Animal(float weightKg, int amountAnimalCell, float amountEat, int speed) {
         this.weightKg = weightKg;
         this.amountAnimalCell = amountAnimalCell;
         this.amountEat = amountEat;
@@ -28,7 +28,7 @@ public abstract class T extends Organisms implements ReproducibleAnimals {
     }
 
     @Override
-    public void reproduce(T organismsFirst, List<Organisms> listOrganisms) {
+    public void reproduce(Animal organismsFirst, List<Organisms> listOrganisms) {
 
     }
 

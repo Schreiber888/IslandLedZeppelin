@@ -6,7 +6,7 @@ import com.javarush.island.bekkiv.area.Constant;
 import com.javarush.island.bekkiv.game.Game;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.area.Area;
-import com.javarush.island.bekkiv.organisms.animals.T;
+import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Boar;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
 import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
@@ -23,7 +23,7 @@ public class FactoryOrganisms implements Runnable {
     private List<Organisms> organisms = new ArrayList<>();
     public Map<String, Organisms> organismsMap = new HashMap<>();
     Plants plants = new Plants(ParamPlants.WEIGHT, ParamPlants.AMOUNT_IN_CELL);
-    public List<? super T> animals = new ArrayList<>();
+    public List<? super Animal> animals = new ArrayList<>();
     public static Map<Integer, List<Organisms>> mapAnimals = new HashMap<>();
 
     private static final Class<?>[] TYPES = {Wolf.class, Boar.class};

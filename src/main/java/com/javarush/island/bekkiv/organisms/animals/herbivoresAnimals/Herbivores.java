@@ -5,13 +5,13 @@ import com.javarush.island.bekkiv.FactoryOrganisms;
 import com.javarush.island.bekkiv.RandomFood;
 import com.javarush.island.bekkiv.area.Constant;
 import com.javarush.island.bekkiv.organisms.Organisms;
-import com.javarush.island.bekkiv.organisms.animals.T;
+import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.capabilities.Eatable;
 import com.javarush.island.bekkiv.organisms.plants.Plants;
 
 import java.util.List;
 
-public abstract class Herbivores extends T implements Eatable {
+public abstract class Herbivores extends Animal implements Eatable {
 
 
     public Herbivores(float weightKg, int amountAnimalCell, float amountEat, int speed) {
@@ -20,7 +20,7 @@ public abstract class Herbivores extends T implements Eatable {
 
 
     @Override
-    public void eat(T organismsFirst, List<Organisms> listOrganisms) {
+    public void eat(Animal organismsFirst, List<Organisms> listOrganisms) {
         for (int i = 0; i < listOrganisms.size(); i++) {
             Organisms organismsSecond = listOrganisms.get(i);
             float parameterArgumentsWeightKg = FactoryOrganisms.getParameterArgumentsWeightKg(organismsFirst);

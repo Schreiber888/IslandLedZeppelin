@@ -1,9 +1,9 @@
 package com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals;
 
 
-import com.javarush.island.bekkiv.organisms.animals.T;
+import com.javarush.island.bekkiv.organisms.animals.Animal;
 
-public class Horse extends T {
+public class Horse extends Animal {
 
 
     public Horse(float weightKg, int amountAnimalCell, float amountEat, int speed) {
