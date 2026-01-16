@@ -5,6 +5,6 @@ import com.javarush.island.bekkiv.organisms.animals.T;
 
 import java.util.List;
 @FunctionalInterface
-public interface Eatable {
-    void eat(T organismsFirst, List<Organisms> listOrganisms);
+public interface ReproducibleAnimals {
+    void reproduce(T organismsFirst, List<Organisms> listOrganisms);
 }

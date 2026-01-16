@@ -1,18 +1,11 @@
 package com.javarush.island.bekkiv.organisms.animals;
 
-import com.javarush.island.bekkiv.ParamConstInstanceOrganisms;
-import com.javarush.island.bekkiv.RandomFood;
 import com.javarush.island.bekkiv.organisms.Organisms;
-import com.javarush.island.bekkiv.organisms.animals.capabilities.AnimalBehavior;
-import com.javarush.island.bekkiv.organisms.animals.capabilities.Eatable;
-import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
-import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
-import com.javarush.island.khmelov.entity.organizm.Organism;
+import com.javarush.island.bekkiv.organisms.animals.capabilities.ReproducibleAnimals;
 
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
-public abstract class Animal extends Organisms {
+public abstract class T extends Organisms implements ReproducibleAnimals {
     public float weightKg; //
     public int amountAnimalCell;
     public float amountEat;
@@ -27,16 +20,19 @@ public abstract class Animal extends Organisms {
 
     //public Animal() {}
 
-    public Animal(float weightKg, int amountAnimalCell, float amountEat, int speed) {
+    public T(float weightKg, int amountAnimalCell, float amountEat, int speed) {
         this.weightKg = weightKg;
         this.amountAnimalCell = amountAnimalCell;
         this.amountEat = amountEat;
         this.speed = speed;
     }
 
+    @Override
+    public void reproduce(T organismsFirst, List<Organisms> listOrganisms) {
 
+    }
 
-    /*@Override
+/*@Override
     public void reproduce(Organisms organisms,  List<Organisms> listOrganisms) {
         Organisms clone = organisms.clone();
         listOrganisms.add(clone);

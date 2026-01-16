@@ -2,6 +2,7 @@ package com.javarush.island.bekkiv.organisms;
 
 
 import com.javarush.island.bekkiv.annotation.OrganismsAnnotation;
+import com.javarush.island.bekkiv.organisms.animals.capabilities.ReproducibleAnimals;
 
 
 public abstract class Organisms implements Cloneable {

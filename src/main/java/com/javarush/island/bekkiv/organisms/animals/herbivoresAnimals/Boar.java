@@ -10,4 +10,5 @@ public class Boar extends Herbivores implements ParamBoar {
         super(weightKg, amountAnimalCell, amountEat, speed);
     }
 
+
 }
