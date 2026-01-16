@@ -34,7 +34,8 @@ public class Game implements Runnable {
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         executorService.scheduleWithFixedDelay(factoryOrganisms, 0, 1, TimeUnit.SECONDS);
 
-        while (n < 5000) {
+
+        while (n < 500) {
 
 
 
