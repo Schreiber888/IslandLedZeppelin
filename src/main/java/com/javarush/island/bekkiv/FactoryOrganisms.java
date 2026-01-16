@@ -1,7 +1,6 @@
 package com.javarush.island.bekkiv;
 
 
-
 import com.javarush.island.bekkiv.annotation.OrganismsAnnotation;
 import com.javarush.island.bekkiv.area.Constant;
 import com.javarush.island.bekkiv.organisms.Organisms;
@@ -26,13 +25,13 @@ public class FactoryOrganisms implements Runnable {
     private List<Organisms> organisms = new ArrayList<>();
     public Map<String, Organisms> organismsMap = new HashMap<>();
     Plants plants = new Plants(ParamPlants.WEIGHT, ParamPlants.AMOUNT_IN_CELL);
-    public  List<? super Animal> animals = new ArrayList<>();
+    public List<? super Animal> animals = new ArrayList<>();
     public static Map<Integer, List<Organisms>> mapAnimals = new HashMap<>();
 
     private static final Class<?>[] TYPES = {Wolf.class, Boar.class};
 
 
-    public ArrayList<Organisms> getListOrganisms(){
+    public ArrayList<Organisms> getListOrganisms() {
         return new ArrayList<>(organisms);
     }
 
@@ -45,7 +44,7 @@ public class FactoryOrganisms implements Runnable {
         //weightLossAnimals();
     }
 
-    public void makeAnimals () throws NoSuchFieldException, IllegalAccessException {
+    public void makeAnimals() throws NoSuchFieldException, IllegalAccessException {
         final Organisms[] PROTOTYPES = createObject(TYPES);
 
         //System.out.println(organisms);
@@ -67,23 +66,24 @@ public class FactoryOrganisms implements Runnable {
         int numberArea = 0;
         for (int i = 0; i < Area.arrayArea.length; i++) {
             for (int j = 0; j < Area.arrayArea[i].length; j++) {
-                    mapAnimals.put(numberArea, Area.arrayArea[i][j]);
-                    numberArea ++;
+                mapAnimals.put(numberArea, Area.arrayArea[i][j]);
+                numberArea++;
             }
         }
     }
 
-    public static float getParameterArgumentsWeightKg(Organisms organismsFirst){
+    public static float getParameterArgumentsWeightKg(Organisms organismsFirst) {
         Class<? extends Organisms> organismsClass = organismsFirst.getClass();
-        try {
-            Field nameField = organismsClass.getField("weightKg");
-            //nameField.setAccessible(true); это если хотим редактированть наверно
-            Object weightKg = nameField.get(organismsFirst);
-            return (float) weightKg;
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            throw new RuntimeException(e);//доработать исключение
-        }
 
+        //Field nameField = organismsClass.getField("weightKg");
+        float ParameterArgumentsWeightKg = 0;
+        if (organismsClass.isAnnotationPresent(OrganismsAnnotation.class)) {
+            ParameterArgumentsWeightKg = organismsClass.getAnnotation(OrganismsAnnotation.class).weightKg();
+            //nameField.setAccessible(true); это если хотим редактированть наверно
+            //Object weightKg = nameField.get(organismsFirst);
+            //return ParameterArgumentsWeightKg;
+        }
+        return ParameterArgumentsWeightKg;
     }
 
     private Organisms[] createObject(Class<?>[] TYPES) {
@@ -102,39 +102,39 @@ public class FactoryOrganisms implements Runnable {
         return organisms;
     }
 
-    private Organisms generateObject(Class<?> type,float weightKg, int amountCell, float amountEat, int speed) {
+    private Organisms generateObject(Class<?> type, float weightKg, int amountCell, float amountEat, int speed) {
         try {
             Constructor<?> constructor = type.getConstructor(float.class, int.class, float.class, int.class);
             return (Organisms) constructor.newInstance(weightKg, amountCell, amountEat, speed);
-        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException |
+                 IllegalAccessException e) {
             throw new RuntimeException(e); //доработать Exception
         }
     }
 
-    public static void weightLossAnimals(){
-    for (int numberArea = 0; numberArea < mapAnimals.size(); numberArea++) {
-        List<Organisms> organismsList = mapAnimals.get(numberArea);
-        for (int i = 0; i < organismsList.size(); i++) {
-            Organisms organisms = organismsList.get(i);
-            if (organisms instanceof Predators) {
-                System.out.println("Вес волка был: " + ((Predators) organisms).getWeightKg());
-                ((Predators) organisms).setWeightKg(((Predators) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
-                System.out.println("Вес волка стал: " + ((Predators) organisms).getWeightKg());
-            } else if (organisms instanceof Herbivores) {
-                System.out.println("Вес кабана был: " + ((Herbivores) organisms).getWeightKg());
-                ((Herbivores) organisms).setWeightKg(((Herbivores) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
-                System.out.println("Вес кабана стал: " + ((Herbivores) organisms).getWeightKg());
-            } //else throw new IllegalArgumentException("При уменьшении веса животного возникло исключение - такого вида животного не существует");
+    public static void weightLossAnimals() {
+        for (int numberArea = 0; numberArea < mapAnimals.size(); numberArea++) {
+            List<Organisms> organismsList = mapAnimals.get(numberArea);
+            for (int i = 0; i < organismsList.size(); i++) {
+                Organisms organisms = organismsList.get(i);
+                if (organisms instanceof Predators) {
+                    System.out.println("Вес волка был: " + ((Predators) organisms).getWeightKg());
+                    ((Predators) organisms).setWeightKg(((Predators) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
+                    System.out.println("Вес волка стал: " + ((Predators) organisms).getWeightKg());
+                } else if (organisms instanceof Herbivores) {
+                    System.out.println("Вес кабана был: " + ((Herbivores) organisms).getWeightKg());
+                    ((Herbivores) organisms).setWeightKg(((Herbivores) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
+                    System.out.println("Вес кабана стал: " + ((Herbivores) organisms).getWeightKg());
+                } //else throw new IllegalArgumentException("При уменьшении веса животного возникло исключение - такого вида животного не существует");
+            }
+            //for (Organisms organisms : organismsList) {
+
+
+            //}
         }
-        //for (Organisms organisms : organismsList) {
-
-
-
-        //}
     }
-}
 
-    private void growPlants(){
+    private void growPlants() {
         for (int i = 0; i < Area.arrayArea.length; i++) {
             for (int j = 0; j < Area.arrayArea[i].length; j++) {
                 for (int k = 0; k < ParamPlants.AMOUNT_IN_CELL; k++) {

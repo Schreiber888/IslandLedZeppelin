@@ -23,7 +23,7 @@ public class Game implements Runnable {
     @Override
     public void run() {
         //ParamConstInstanceOrganisms paramConstInstanceOrganisms = new ParamConstInstanceOrganisms();
-        boolean n = true;
+        int n = 0;
         FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
         try {
             factoryOrganisms.makeAnimals();
@@ -34,7 +34,7 @@ public class Game implements Runnable {
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         executorService.scheduleWithFixedDelay(factoryOrganisms, 0, 300, TimeUnit.SECONDS);
 
-        while (n) {
+        while (n < 10) {
 
 
 
@@ -77,7 +77,7 @@ public class Game implements Runnable {
                 //n = false;
             }
             // }
-
+            n++;
         }
     }
 }
