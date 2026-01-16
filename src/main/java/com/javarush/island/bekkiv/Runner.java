@@ -20,14 +20,17 @@ public class Runner {
         /*ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         executorService.scheduleWithFixedDelay(factoryOrganisms, 1, 30000, TimeUnit.SECONDS);*/
 
+        FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
+        try {
+            factoryOrganisms.makeAnimals();
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+        executorService.scheduleWithFixedDelay(factoryOrganisms, 0, 1, TimeUnit.SECONDS);
 
 
-        Game game = new Game();
-        Thread threadGame = new Thread(game);
-        //threadGame.start();
-        //threadGame.join();
-        threadGame.start();
-        threadGame.join();
 
 
     }

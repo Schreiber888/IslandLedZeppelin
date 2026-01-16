@@ -3,6 +3,7 @@ package com.javarush.island.bekkiv;
 
 import com.javarush.island.bekkiv.annotation.OrganismsAnnotation;
 import com.javarush.island.bekkiv.area.Constant;
+import com.javarush.island.bekkiv.game.Game;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.area.Area;
 import com.javarush.island.bekkiv.organisms.animals.Animal;
@@ -42,6 +43,18 @@ public class FactoryOrganisms implements Runnable {
         System.out.println(Arrays.deepToString(Area.arrayArea));
         //---------тут продолжить--------//
         //weightLossAnimals();
+
+        Game game = new Game();
+        Thread threadGame = new Thread(game);
+        //threadGame.start();
+        //threadGame.join();
+        threadGame.start();
+        try {
+            threadGame.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public void makeAnimals() throws NoSuchFieldException, IllegalAccessException {

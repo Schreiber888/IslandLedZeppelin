@@ -24,18 +24,10 @@ public class Game implements Runnable {
     public void run() {
         //ParamConstInstanceOrganisms paramConstInstanceOrganisms = new ParamConstInstanceOrganisms();
         int n = 0;
-        FactoryOrganisms factoryOrganisms = new FactoryOrganisms();
-        try {
-            factoryOrganisms.makeAnimals();
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-
-        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-        executorService.scheduleWithFixedDelay(factoryOrganisms, 0, 1, TimeUnit.SECONDS);
 
 
-        while (n < 500) {
+
+        while (n < 50) {
 
 
 
