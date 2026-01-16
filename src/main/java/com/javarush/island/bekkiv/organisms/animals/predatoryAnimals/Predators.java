@@ -29,6 +29,7 @@ public abstract class Predators extends Animal implements Eatable {
                     //System.out.println("Волк вес: " + " " + organismsFirst.getWeightKg());
                     if ((organismsFirst.getWeightKg() * Constant.COEFFICIENT_GAIN_WEIGHT) >= ((Herbivores) organismsSecond).getWeightKg()) {
                         organismsFirst.setWeightKg(organismsFirst.getWeightKg() + ((Herbivores) organismsSecond).getWeightKg());
+                        listOrganisms.remove(i);
                     } else {
                         organismsFirst.setWeightKg(organismsFirst.getWeightKg() + (organismsFirst.getWeightKg() * Constant.COEFFICIENT_GAIN_WEIGHT));
                         listOrganisms.remove(i);

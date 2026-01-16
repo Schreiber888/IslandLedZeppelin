@@ -32,9 +32,9 @@ public class Game implements Runnable {
         }
 
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-        executorService.scheduleWithFixedDelay(factoryOrganisms, 0, 300, TimeUnit.SECONDS);
+        executorService.scheduleWithFixedDelay(factoryOrganisms, 0, 1, TimeUnit.SECONDS);
 
-        while (n < 10) {
+        while (n < 5000) {
 
 
 
