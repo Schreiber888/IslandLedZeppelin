@@ -10,13 +10,6 @@ public abstract class Animal extends Organisms implements ReproducibleAnimals {
     public int amountAnimalCell;
     public float amountEat;
     public int speed;
-    //ParamConstInstanceOrganisms paramConstInstanceOrganisms = new ParamConstInstanceOrganisms();
-    /*public Animal(float weightKg, int amountAnimalCell, float amountEat, int speed) {
-        this.weightKg = weightKg;
-        this.amountAnimalCell = amountAnimalCell;
-        this.amountEat = amountEat;
-        this.speed = speed;
-    }*/
 
     //public Animal() {}
 
@@ -34,12 +27,7 @@ public abstract class Animal extends Organisms implements ReproducibleAnimals {
         System.out.println("Размер после клона " + listOrganisms.size());
     }
 
-/*@Override
-    public void reproduce(Organisms organisms,  List<Organisms> listOrganisms) {
-        Organisms clone = organisms.clone();
-        listOrganisms.add(clone);
-    }
-
+    /*
     @Override
     public int[][] move(int xCell, int yCell) {
         int x = ThreadLocalRandom.current().nextInt(xCell);

@@ -28,12 +28,13 @@ public class Game implements Runnable {
 
 
 
-        while (n < 50) {
+        while (n < Constant.GAME_CYCLE) {
 
-
-
-
-            FactoryOrganisms.weightLossAnimals();
+            try {
+                FactoryOrganisms.weightLossAnimals();
+            } catch (NoSuchFieldException e) {
+                throw new RuntimeException(e);
+            }
 
             int numberArea;
             int j;

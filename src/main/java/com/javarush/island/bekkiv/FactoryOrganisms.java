@@ -122,7 +122,7 @@ public class FactoryOrganisms implements Runnable {
         }
     }
 
-    public static void weightLossAnimals() {
+    public static void weightLossAnimals() throws NoSuchFieldException {
         for (int numberArea = 0; numberArea < mapAnimals.size(); numberArea++) {
             List<Organisms> organismsList = mapAnimals.get(numberArea);
             for (int i = 0; i < organismsList.size(); i++) {
@@ -130,12 +130,23 @@ public class FactoryOrganisms implements Runnable {
                 if (organisms instanceof Predators) {
                     System.out.println("Вес волка был: " + ((Predators) organisms).getWeightKg());
                     ((Predators) organisms).setWeightKg(((Predators) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
+                    if (((Predators) organisms).getWeightKg() < FactoryOrganisms.getParameterArgumentsWeightKg(organisms) * Constant.MIN_WEIGHT_REMOVAL_GAME) {
+                        organismsList.remove(i);
+                        System.out.println("Из за веса удален " + organisms.getClass().getSimpleName());
+                        i = i - 1;
+                    }
                     System.out.println("Вес волка стал: " + ((Predators) organisms).getWeightKg());
                 } else if (organisms instanceof Herbivores) {
                     System.out.println("Вес кабана был: " + ((Herbivores) organisms).getWeightKg());
                     ((Herbivores) organisms).setWeightKg(((Herbivores) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
+                    if (((Herbivores) organisms).getWeightKg() < ((Herbivores) organisms).getWeightKg() * Constant.MIN_WEIGHT_REMOVAL_GAME) {
+                        organismsList.remove(i);
+                        System.out.println("Из за веса удален " + organisms.getClass().getSimpleName());
+                        i = i - 1;
+                    }
                     System.out.println("Вес кабана стал: " + ((Herbivores) organisms).getWeightKg());
                 } //else throw new IllegalArgumentException("При уменьшении веса животного возникло исключение - такого вида животного не существует");
+
             }
             //for (Organisms organisms : organismsList) {
 
