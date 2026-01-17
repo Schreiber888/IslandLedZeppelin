@@ -7,5 +7,5 @@ public interface Constant {
     float MIN_WEIGHT_REMOVAL_GAME = 0.3F;
     int PROBABILITY_REPRODUCTION = 98;
     int GAME_CYCLE = 30;
-
+    int PROBABILITY_MOTION = 50;
 }

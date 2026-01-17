@@ -46,7 +46,7 @@ public class RandomFood {
         map.put(15, "Plants");
     }
 
-    public static int getProbabilityFood() {
+    public static int getProbability() {
         final int MAX_PERCENT = 100;
         int probabilityFood;
         probabilityFood = ThreadLocalRandom.current().nextInt(MAX_PERCENT);

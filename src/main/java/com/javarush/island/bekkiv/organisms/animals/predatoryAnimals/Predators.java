@@ -25,7 +25,7 @@ public abstract class Predators extends Animal implements Eatable {
             float parameterArgumentsWeightKg = FactoryOrganisms.getParameterArgumentsWeightKg(organismsFirst);
             if (organismsSecond instanceof Herbivores
                     && organismsFirst.getWeightKg() <= parameterArgumentsWeightKg) {
-                if (RandomFood.getProbabilityFood() <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) {
+                if (RandomFood.getProbability() <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) {
                     //System.out.println("Волк вес: " + " " + organismsFirst.getWeightKg());
                     if ((organismsFirst.getWeightKg() * Constant.COEFFICIENT_GAIN_WEIGHT) >= ((Herbivores) organismsSecond).getWeightKg()) {
                         organismsFirst.setWeightKg(organismsFirst.getWeightKg() + ((Herbivores) organismsSecond).getWeightKg());

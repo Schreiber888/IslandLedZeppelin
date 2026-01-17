@@ -1,22 +1,15 @@
 package com.javarush.island.bekkiv.game;
 
 import com.javarush.island.bekkiv.FactoryOrganisms;
-import com.javarush.island.bekkiv.ParamConstInstanceOrganisms;
 import com.javarush.island.bekkiv.RandomFood;
 import com.javarush.island.bekkiv.area.Constant;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.area.Area;
 import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
-import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Wolf;
-import com.javarush.island.bekkiv.organisms.plants.Plants;
 import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
 
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
 
 public class Game implements Runnable {
 
@@ -63,7 +56,7 @@ public class Game implements Runnable {
 
                     }
                     if (organismsFirst instanceof Predators || organismsFirst instanceof Herbivores) {
-                        if (RandomFood.getProbabilityFood() >= Constant.PROBABILITY_REPRODUCTION) {
+                        if (RandomFood.getProbability() >= Constant.PROBABILITY_REPRODUCTION) {
                             Animal animal = (Animal) organismsFirst;
                             animal.reproduce(animal, listOrganisms);
                             System.out.println("кто-то размножился " + organismsFirst.getClass().getName());

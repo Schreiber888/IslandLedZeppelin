@@ -27,7 +27,7 @@ public abstract class Herbivores extends Animal implements Eatable {
             float parameterArgumentsWeightKg = FactoryOrganisms.getParameterArgumentsWeightKg(organismsFirst);
             if (organismsSecond instanceof Plants
             && organismsFirst.getWeightKg() <= parameterArgumentsWeightKg) {
-                if (RandomFood.getProbabilityFood() <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) { //тут может ошибка
+                if (RandomFood.getProbability() <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) { //тут может ошибка
                     //System.out.println("Кабан вес: " + " " + organismsFirst.getWeightKg());
                     if ((organismsFirst.getWeightKg() * Constant.COEFFICIENT_GAIN_WEIGHT) >= Plants.WEIGHT) {
                         organismsFirst.setWeightKg(organismsFirst.getWeightKg() + Plants.WEIGHT);

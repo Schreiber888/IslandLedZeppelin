@@ -96,6 +96,18 @@ public class FactoryOrganisms implements Runnable {
         return ParameterArgumentsWeightKg;
     }
 
+    public static int getParameterArgumentsSpeed(Organisms organismsFirst) {
+        Class<? extends Organisms> organismsClass = organismsFirst.getClass();
+        int ParameterArgumentsSpeed = 0;
+        if (organismsClass.isAnnotationPresent(OrganismsAnnotation.class)) {
+            ParameterArgumentsSpeed = organismsClass.getAnnotation(OrganismsAnnotation.class).speed();
+        }
+        return ParameterArgumentsSpeed;
+    }
+
+
+
+
     private Organisms[] createObject(Class<?>[] TYPES) {
         Organisms[] organisms = new Organisms[TYPES.length];
         int index = 0;

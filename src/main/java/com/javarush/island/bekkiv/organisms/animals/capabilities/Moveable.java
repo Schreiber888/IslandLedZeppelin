@@ -7,5 +7,5 @@ import java.util.List;
 
 @FunctionalInterface
 public interface Moveable {
-    List<Organisms> move(Animal organismsFirst, List<Organisms> listOrganisms);
+    void move(Organisms organismsFirst, List<Organisms> listOrganisms, int index) throws NoSuchFieldException;
 }
