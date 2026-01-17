@@ -52,6 +52,14 @@ public class FactoryOrganisms implements Runnable {
             throw new RuntimeException(e);
         }
 
+        Motion motion = new Motion();
+        Thread threadMotion = new Thread(motion);
+        threadMotion.start();
+        try {
+            threadMotion.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void makeAnimals() throws NoSuchFieldException, IllegalAccessException {
