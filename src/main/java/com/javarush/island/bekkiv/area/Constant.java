@@ -6,6 +6,6 @@ public interface Constant {
     float WEIGHT_LOSS = 0.95F;//default 0.99975F
     float MIN_WEIGHT_REMOVAL_GAME = 0.3F;
     int PROBABILITY_REPRODUCTION = 98;
-    int GAME_CYCLE = 30;
+    int GAME_CYCLE = 3;
     int PROBABILITY_MOTION = 50;
 }

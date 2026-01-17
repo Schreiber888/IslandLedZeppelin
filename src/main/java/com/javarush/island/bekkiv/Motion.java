@@ -3,7 +3,9 @@ package com.javarush.island.bekkiv;
 import com.javarush.island.bekkiv.area.Area;
 import com.javarush.island.bekkiv.area.Constant;
 import com.javarush.island.bekkiv.organisms.Organisms;
+import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.capabilities.Moveable;
+import com.javarush.island.bekkiv.organismsBuilder.Plants;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -24,26 +26,29 @@ public class Motion implements Runnable, Moveable {
                 for (int animalMove = 0; animalMove < organismsList.size(); animalMove++) {
                     Organisms animal = organismsList.get(animalMove);
                     if (RandomFood.getProbability() > Constant.PROBABILITY_MOTION) {
-                        int nextRow = ThreadLocalRandom.current().nextInt(FactoryOrganisms.getParameterArgumentsSpeed(animal));
-                        int nextColon = ThreadLocalRandom.current().nextInt(FactoryOrganisms.getParameterArgumentsSpeed(animal));
-                        if (nextRow + nextColon <= FactoryOrganisms.getParameterArgumentsSpeed(animal)) {
-                            if (nextRow >= row){
-                                nextRow = row;
-                                if (nextColon >= colon){
-                                    nextColon = colon;
-                                    Area.arrayArea[nextRow][nextColon].add(animal);
-                                    organismsList.remove(animalMove);
-                                    animalMove = animalMove - 1;
-                                    System.out.println("Переместился--------------------------->");
+                        if (animal instanceof Animal) {
+                            int nextRow = ThreadLocalRandom.current().nextInt(Math.abs(FactoryOrganisms.getParameterArgumentsSpeed(animal)));
+                            int nextColon = ThreadLocalRandom.current().nextInt(Math.abs(FactoryOrganisms.getParameterArgumentsSpeed(animal)));
+                            if (nextRow + nextColon <= FactoryOrganisms.getParameterArgumentsSpeed(animal)) {
+                                if (nextRow >= row) {
+                                    nextRow = row;
                                 }
+                                if (nextColon >= colon) {
+                                    nextColon = colon;
+                                }
+                                Area.arrayArea[nextRow][nextColon].add(animal);
+                                organismsList.remove(animalMove);
+                                if (animalMove != 0) {
+                                    animalMove = animalMove - 1;
+                                }
+                                System.out.println("Переместился--------------------------->");
                             }
-
                         }
+
                     }
                 }
             }
         }
-
 
 
     }
