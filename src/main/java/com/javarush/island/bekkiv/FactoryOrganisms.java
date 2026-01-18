@@ -8,6 +8,7 @@ import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.area.Area;
 import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Boar;
+import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Buffalo;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
 import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
 import com.javarush.island.bekkiv.organisms.plants.ParamPlants;
@@ -26,7 +27,7 @@ public class FactoryOrganisms implements Runnable {
     public List<? super Animal> animals = new ArrayList<>();
     public static Map<Integer, List<Organisms>> mapAnimals = new HashMap<>();
 
-    public static final Class<?>[] TYPES = {Wolf.class, Boar.class};
+    public static final Class<?>[] TYPES = {Wolf.class, Boar.class, Buffalo.class};
 
 
     public ArrayList<Organisms> getListOrganisms() {
@@ -148,23 +149,23 @@ public class FactoryOrganisms implements Runnable {
             for (int i = 0; i < organismsList.size(); i++) {
                 Organisms organisms = organismsList.get(i);
                 if (organisms instanceof Predators) {
-                    System.out.println("Вес волка был: " + ((Predators) organisms).getWeightKg());
+                    System.out.println("Вес " + organisms.getClass().getSimpleName() + " был: " + ((Predators) organisms).getWeightKg());
                     ((Predators) organisms).setWeightKg(((Predators) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
                     if (((Predators) organisms).getWeightKg() < FactoryOrganisms.getParameterArgumentsWeightKg(organisms) * Constant.MIN_WEIGHT_REMOVAL_GAME) {
                         organismsList.remove(i);
                         System.out.println("Из за веса удален " + organisms.getClass().getSimpleName());
                         i = i - 1;
                     }
-                    System.out.println("Вес волка стал: " + ((Predators) organisms).getWeightKg());
+                    System.out.println("Вес " + organisms.getClass().getSimpleName() + " стал: " + ((Predators) organisms).getWeightKg());
                 } else if (organisms instanceof Herbivores) {
-                    System.out.println("Вес кабана был: " + ((Herbivores) organisms).getWeightKg());
+                    System.out.println("Вес " + organisms.getClass().getSimpleName() + " был: " + ((Herbivores) organisms).getWeightKg());
                     ((Herbivores) organisms).setWeightKg(((Herbivores) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
                     if (((Herbivores) organisms).getWeightKg() < ((Herbivores) organisms).getWeightKg() * Constant.MIN_WEIGHT_REMOVAL_GAME) {
                         organismsList.remove(i);
                         System.out.println("Из за веса удален " + organisms.getClass().getSimpleName());
                         i = i - 1;
                     }
-                    System.out.println("Вес кабана стал: " + ((Herbivores) organisms).getWeightKg());
+                    System.out.println("Вес " + organisms.getClass().getSimpleName() + " стал: " + ((Herbivores) organisms).getWeightKg());
                 } //else throw new IllegalArgumentException("При уменьшении веса животного возникло исключение - такого вида животного не существует");
 
             }

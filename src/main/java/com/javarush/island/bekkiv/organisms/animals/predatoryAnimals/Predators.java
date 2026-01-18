@@ -19,7 +19,7 @@ public abstract class Predators extends Animal implements Eatable {
     }
 
     @Override
-    public void eat(Animal organismsFirst, List<Organisms> listOrganisms) {// тип Animal может помешать
+    public synchronized void eat(Animal organismsFirst, List<Organisms> listOrganisms) {// тип Animal может помешать
         for (int i = 0; i < listOrganisms.size(); i++) {
             Organisms organismsSecond =  listOrganisms.get(i);
             float parameterArgumentsWeightKg = FactoryOrganisms.getParameterArgumentsWeightKg(organismsFirst);

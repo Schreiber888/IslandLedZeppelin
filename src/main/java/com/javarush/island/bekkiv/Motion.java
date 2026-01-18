@@ -19,7 +19,7 @@ public class Motion implements Runnable, Moveable {
     }
 
     @Override
-    public void move() {
+    public synchronized void move() {
         for (int row = 0; row < Area.arrayArea.length; row++) {
             for (int colon = 0; colon < Area.arrayArea[row].length; colon++) {
                 List<Organisms> organismsList = Area.arrayArea[row][colon];
