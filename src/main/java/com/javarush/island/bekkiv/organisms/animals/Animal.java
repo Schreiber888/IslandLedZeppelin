@@ -1,5 +1,6 @@
 package com.javarush.island.bekkiv.organisms.animals;
 
+import com.javarush.island.bekkiv.FactoryOrganisms;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.organisms.animals.capabilities.ReproducibleAnimals;
 
@@ -23,7 +24,8 @@ public abstract class Animal extends Organisms implements ReproducibleAnimals {
     @Override
     public void reproduce(Animal organismsFirst, List<Organisms> listOrganisms) {
         System.out.println("Размер до клона " + listOrganisms.size());
-        if (getAmountAnimalsInListOrganisms(organismsFirst, listOrganisms) < organismsFirst.getAmountAnimalCell()){
+        int amountAnimalsInListOrganisms = getAmountAnimalsInListOrganisms(organismsFirst, listOrganisms);
+        if (amountAnimalsInListOrganisms < FactoryOrganisms.getParameterArgumentsAmountCell(organismsFirst)){
         listOrganisms.add(organismsFirst.clone());
         System.out.println("кто-то размножился " + organismsFirst.getClass().getName());
         }

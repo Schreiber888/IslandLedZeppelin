@@ -43,6 +43,8 @@ public class FactoryOrganisms implements Runnable {
         //---------тут продолжить--------//
         //weightLossAnimals();
 
+
+
         Game game = new Game();
         Thread threadGame = new Thread(game);
         threadGame.start();
@@ -97,6 +99,20 @@ public class FactoryOrganisms implements Runnable {
         }
     }
 
+    public static int getParameterArgumentsAmountCell(Organisms organismsFirst) {
+        Class<? extends Organisms> organismsClass = organismsFirst.getClass();
+
+        //Field nameField = organismsClass.getField("weightKg");
+        int ParameterArgumentsWeightKg = 0;
+        if (organismsClass.isAnnotationPresent(OrganismsAnnotation.class)) {
+            ParameterArgumentsWeightKg = organismsClass.getAnnotation(OrganismsAnnotation.class).amountCell();
+            //nameField.setAccessible(true); это если хотим редактированть наверно
+            //Object weightKg = nameField.get(organismsFirst);
+            //return ParameterArgumentsWeightKg;
+        }
+        return ParameterArgumentsWeightKg;
+    }
+
     public static float getParameterArgumentsWeightKg(Organisms organismsFirst) {
         Class<? extends Organisms> organismsClass = organismsFirst.getClass();
 
@@ -119,8 +135,6 @@ public class FactoryOrganisms implements Runnable {
         }
         return ParameterArgumentsSpeed;
     }
-
-
 
 
     private Organisms[] createObject(Class<?>[] TYPES) {
@@ -190,3 +204,33 @@ public class FactoryOrganisms implements Runnable {
 
 }
 
+/*
+private void growPlants() {
+    for (int i = 0; i < Area.arrayArea.length; i++) {
+        for (int j = 0; j < Area.arrayArea[i].length; j++) {
+            for (int k = 0; k < ParamPlants.AMOUNT_IN_CELL; k++) {
+                Area.arrayArea[i][j].add(i, plants.clone());
+            }
+
+        }
+    }
+}*/
+
+/*
+private void growPlants() {
+    for (int i = 0; i < Area.arrayArea.length; i++) {
+        for (int j = 0; j < Area.arrayArea[i].length; j++) {
+            int amountPlantsInCell = 0;
+            for (int k = 0; k < Area.arrayArea[i][j].size(); k++) {
+                if (Area.arrayArea[i][j].get(k) instanceof Plants) {
+                    if (amountPlantsInCell < ParamPlants.AMOUNT_IN_CELL){
+                        amountPlantsInCell++;
+                    }
+                }
+            }
+            for (int k = 0; k < amountPlantsInCell; k++) {
+                Area.arrayArea[i][j].add(i, plants.clone());
+            }
+        }
+    }
+}*/

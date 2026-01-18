@@ -36,11 +36,16 @@ public class Motion implements Runnable, Moveable {
                                 if (nextColon >= colon) {
                                     nextColon = colon;
                                 }
-                                Area.arrayArea[nextRow][nextColon].add(animal);
-                                organismsList.remove(animalMove);
-                                if (animalMove != 0) {
-                                    animalMove = animalMove - 1;
+
+                                if (getAmountAnimalsInListOrganisms(animal, Area.arrayArea[nextRow][nextColon]) < FactoryOrganisms.getParameterArgumentsAmountCell(animal)){
+                                    Area.arrayArea[nextRow][nextColon].add(animal);
+                                    organismsList.remove(animalMove);
+                                    if (animalMove != 0) {
+                                        animalMove = animalMove - 1;
+                                    }
                                 }
+
+
                                 System.out.println("Переместился--------------------------->");
                             }
                         }
@@ -51,6 +56,16 @@ public class Motion implements Runnable, Moveable {
         }
 
 
+    }
+
+    private int getAmountAnimalsInListOrganisms(Organisms organismsFirst, List<Organisms> listOrganisms){
+        int amountAnimal = 0;
+        for (Organisms organism : listOrganisms) {
+            if (organism.getClass().getSimpleName().equals(organismsFirst.getClass().getSimpleName())) {
+                amountAnimal++;
+            }
+        }
+        return amountAnimal;
     }
 }
 
