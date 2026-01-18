@@ -18,7 +18,7 @@ public class Runner {
         }
 
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-        executorService.scheduleWithFixedDelay(factoryOrganisms, 0, 5, TimeUnit.SECONDS);
+        executorService.scheduleWithFixedDelay(factoryOrganisms, 0, 1000, TimeUnit.SECONDS);
 
     }
 }

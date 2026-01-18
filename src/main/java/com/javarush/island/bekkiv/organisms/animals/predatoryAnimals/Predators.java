@@ -35,7 +35,7 @@ public abstract class Predators extends Animal implements Eatable {
                         listOrganisms.remove(i);
                         i = listOrganisms.size() - 1;
                     }
-                    System.out.println(organismsFirst.getClass().getSimpleName() + " выгнал кабана из игры");
+                    System.out.println(organismsFirst.getClass().getSimpleName() + " выгнал " + organismsSecond.getClass().getSimpleName() + " из игры");
                     //System.out.println("Волк вес: " + " " + organismsFirst.getWeightKg());
                 }
             }

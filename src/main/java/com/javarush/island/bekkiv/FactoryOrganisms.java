@@ -3,6 +3,7 @@ package com.javarush.island.bekkiv;
 
 import com.javarush.island.bekkiv.annotation.OrganismsAnnotation;
 import com.javarush.island.bekkiv.area.Constant;
+import com.javarush.island.bekkiv.counter.Counter;
 import com.javarush.island.bekkiv.game.Game;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.area.Area;
@@ -56,6 +57,15 @@ public class FactoryOrganisms implements Runnable {
         threadMotion.start();
         try {
             threadMotion.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        Counter counter = new Counter();
+        Thread threadCounter = new Thread(counter);
+        threadCounter.start();
+        try {
+            threadCounter.join();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

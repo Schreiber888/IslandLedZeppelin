@@ -23,17 +23,23 @@ public abstract class Animal extends Organisms implements ReproducibleAnimals {
     @Override
     public void reproduce(Animal organismsFirst, List<Organisms> listOrganisms) {
         System.out.println("Размер до клона " + listOrganisms.size());
+        if (getAmountAnimalsInCell(organismsFirst, listOrganisms) <= organismsFirst.getAmountAnimalCell()){
         listOrganisms.add(organismsFirst.clone());
+        System.out.println("кто-то размножился " + organismsFirst.getClass().getName());
+        }
         System.out.println("Размер после клона " + listOrganisms.size());
     }
 
-    /*
-    @Override
-    public int[][] move(int xCell, int yCell) {
-        int x = ThreadLocalRandom.current().nextInt(xCell);
-        int y = ThreadLocalRandom.current().nextInt(yCell);
-        return new int[x][y];
-    }*/
+    private int getAmountAnimalsInCell(Animal organismsFirst, List<Organisms> listOrganisms){
+        int amountAnimal = 0;
+        for (Organisms listOrganism : listOrganisms) {
+            if (listOrganism.getClass().getSimpleName().equals(organismsFirst.getClass().getSimpleName())) {
+                amountAnimal++;
+            }
+        }
+        return amountAnimal;
+    }
+
 
     public float getWeightKg() {
         return weightKg;

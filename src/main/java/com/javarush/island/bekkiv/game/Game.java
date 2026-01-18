@@ -59,7 +59,6 @@ public class Game implements Runnable {
                         if (RandomFood.getProbability() >= Constant.PROBABILITY_REPRODUCTION) {
                             Animal animal = (Animal) organismsFirst;
                             animal.reproduce(animal, listOrganisms);
-                            System.out.println("кто-то размножился " + organismsFirst.getClass().getName());
                         }
                     }
                 }

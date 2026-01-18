@@ -10,11 +10,12 @@ import java.util.Map;
 
 public class Counter implements Runnable {
 
-    String[] simpleName = new String[FactoryOrganisms.TYPES.length];
     Map<String, Integer> mapOrganisms = new HashMap<>();
 
     @Override
     public void run() {
+
+        count();
 
     }
 
@@ -36,15 +37,19 @@ public class Counter implements Runnable {
                         counter++;
                     }
                 }
-                Integer amountOrganisms = mapOrganisms.get(organismString);
-                amountOrganisms = amountOrganisms + counter;
-                mapOrganisms.put(organismString, amountOrganisms);
+
+                Integer amountOrganisms =  mapOrganisms.get(organismString);
+                if (amountOrganisms != null) {  // без этого условия возникало NullPointerException, т.к. amountOrganisms = null. Пока не знаю попчему
+                    amountOrganisms = amountOrganisms + counter;
+                    mapOrganisms.put(organismString, amountOrganisms);
+                }
             }
         }
 
         for (int i = 0; i <FactoryOrganisms.TYPES.length; i++) {
-            System.out.print("Количество " + FactoryOrganisms.TYPES[i].getSimpleName() + " " + mapOrganisms.get(FactoryOrganisms.TYPES[i].getSimpleName()) + " ");
+            System.out.print("Количество " + FactoryOrganisms.TYPES[i].getSimpleName() + " " + mapOrganisms.get(FactoryOrganisms.TYPES[i].getSimpleName()) + " | ");
         }
+        System.out.println();
 
     }
 }
