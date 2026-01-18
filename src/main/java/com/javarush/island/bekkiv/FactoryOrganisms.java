@@ -44,8 +44,6 @@ public class FactoryOrganisms implements Runnable {
 
         Game game = new Game();
         Thread threadGame = new Thread(game);
-        //threadGame.start();
-        //threadGame.join();
         threadGame.start();
         try {
             threadGame.join();
@@ -65,8 +63,6 @@ public class FactoryOrganisms implements Runnable {
 
     public void makeAnimals() throws NoSuchFieldException, IllegalAccessException {
         final Organisms[] PROTOTYPES = createObject(TYPES);
-
-        //System.out.println(organisms);
         for (int i = 0; i < Area.arrayArea.length; i++) {
             for (int j = 0; j < Area.arrayArea[i].length; j++) {
                 List<Organisms> listOrganisms = getListOrganisms();
@@ -169,10 +165,6 @@ public class FactoryOrganisms implements Runnable {
                 } //else throw new IllegalArgumentException("При уменьшении веса животного возникло исключение - такого вида животного не существует");
 
             }
-            //for (Organisms organisms : organismsList) {
-
-
-            //}
         }
     }
 

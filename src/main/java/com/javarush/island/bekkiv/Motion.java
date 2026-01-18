@@ -5,7 +5,7 @@ import com.javarush.island.bekkiv.area.Constant;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.capabilities.Moveable;
-import com.javarush.island.bekkiv.organismsBuilder.Plants;
+
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;

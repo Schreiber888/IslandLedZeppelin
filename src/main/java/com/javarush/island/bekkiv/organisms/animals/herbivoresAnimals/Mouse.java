@@ -3,7 +3,7 @@ package com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals;
 
 import com.javarush.island.bekkiv.organisms.animals.Animal;
 
-public class Mouse extends Animal {
+public class Mouse extends Herbivores {
 
 
     public Mouse(float weightKg, int amountAnimalCell, float amountEat, int speed) {

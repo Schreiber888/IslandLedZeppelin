@@ -6,7 +6,6 @@ import com.javarush.island.bekkiv.organisms.animals.capabilities.ReproducibleAni
 
 
 public abstract class Organisms implements Cloneable {
-    //public int age;
 
     @Override
     public Organisms clone() {
@@ -18,4 +17,5 @@ public abstract class Organisms implements Cloneable {
             throw new AssertionError();
         }
     }
+
 }
