@@ -12,7 +12,6 @@ import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Boar;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Buffalo;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
 import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
-import com.javarush.island.bekkiv.organisms.plants.ParamPlants;
 import com.javarush.island.bekkiv.organisms.plants.Plants;
 import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Wolf;
 
@@ -187,62 +186,35 @@ public class FactoryOrganisms implements Runnable {
         }
     }
 
-    /*private void growPlants() {
-        for (int i = 0; i < Area.arrayArea.length; i++) {
-            for (int j = 0; j < Area.arrayArea[i].length; j++) {
-                for (int k = 0; k < ParamPlants.AMOUNT_IN_CELL; k++) {
-                    Area.arrayArea[i][j].add(i, plants.clone());
-                }
-            }
-        }
-    }*/
-
     public void growPlants() throws NoSuchFieldException, IllegalAccessException {
         final Organisms[] PROTOTYPES = createObject(TYPES);
         for (int i = 0; i < Area.arrayArea.length; i++) {
             for (int j = 0; j < Area.arrayArea[i].length; j++) {
                 for (Organisms prototype : PROTOTYPES) {
                     if (prototype instanceof Plants) {
-                        Field amountAnimalCellField = prototype.getClass().getField("amountAnimalCell");
-                        int amountAnimalCell = (int) amountAnimalCellField.get(prototype);
-                        for (int k = 0; k < amountAnimalCell; k++) {
-                            Area.arrayArea[i][j].add(prototype.clone());
+                        int parameterArgumentsAmountCellPlants = getParameterArgumentsAmountCell(prototype);
+                        int amountPlantsInListOrganisms = getAmountPlantsInListOrganisms(prototype, Area.arrayArea[i][j]);
+                        int amountPlantsToList = parameterArgumentsAmountCellPlants - amountPlantsInListOrganisms;
+                        if (amountPlantsToList >= 0) {
+                            for (int k = 0; k < amountPlantsToList; k++) {
+                                Area.arrayArea[i][j].add(prototype.clone());
+                            }
                         }
                     }
                 }
             }
         }
-
     }
+
+    private int getAmountPlantsInListOrganisms(Organisms organismsFirst, List<Organisms> listOrganisms){
+        int amountPlants = 0;
+        for (Organisms organism : listOrganisms) {
+            if (organism.getClass().getSimpleName().equals(organismsFirst.getClass().getSimpleName())) {
+                amountPlants++;
+            }
+        }
+        return amountPlants;
+    }
+
 }
 
-/*
-private void growPlants() {
-    for (int i = 0; i < Area.arrayArea.length; i++) {
-        for (int j = 0; j < Area.arrayArea[i].length; j++) {
-            for (int k = 0; k < ParamPlants.AMOUNT_IN_CELL; k++) {
-                Area.arrayArea[i][j].add(i, plants.clone());
-            }
-
-        }
-    }
-}*/
-
-/*
-private void growPlants() {
-    for (int i = 0; i < Area.arrayArea.length; i++) {
-        for (int j = 0; j < Area.arrayArea[i].length; j++) {
-            int amountPlantsInCell = 0;
-            for (int k = 0; k < Area.arrayArea[i][j].size(); k++) {
-                if (Area.arrayArea[i][j].get(k) instanceof Plants) {
-                    if (amountPlantsInCell < ParamPlants.AMOUNT_IN_CELL){
-                        amountPlantsInCell++;
-                    }
-                }
-            }
-            for (int k = 0; k < amountPlantsInCell; k++) {
-                Area.arrayArea[i][j].add(i, plants.clone());
-            }
-        }
-    }
-}*/

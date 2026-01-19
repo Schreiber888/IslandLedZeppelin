@@ -3,7 +3,7 @@ package com.javarush.island.bekkiv.organisms.plants;
 import com.javarush.island.bekkiv.annotation.OrganismsAnnotation;
 import com.javarush.island.bekkiv.organisms.Organisms;
 
-@OrganismsAnnotation(weightKg = 1, amountAnimalCell = 100, speed = 0, amountEat = 0)
+@OrganismsAnnotation(weightKg = 1, amountAnimalCell = 1000, speed = 0, amountEat = 0)
 public class Plants extends Organisms implements ParamPlants {
    //public int amountGrass = 4;
     int millis = 20;
