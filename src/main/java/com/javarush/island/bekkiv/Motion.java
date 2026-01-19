@@ -40,13 +40,11 @@ public class Motion implements Runnable, Moveable {
                                 if (getAmountAnimalsInListOrganisms(animal, Area.arrayArea[nextRow][nextColon]) < FactoryOrganisms.getParameterArgumentsAmountCell(animal)){
                                     Area.arrayArea[nextRow][nextColon].add(animal);
                                     organismsList.remove(animalMove);
+                                    System.out.println("Переместился--------------------------->");
                                     if (animalMove != 0) {
                                         animalMove = animalMove - 1;
                                     }
                                 }
-
-
-                                System.out.println("Переместился--------------------------->");
                             }
                         }
 
