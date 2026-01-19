@@ -3,7 +3,7 @@ package com.javarush.island.bekkiv.organisms.animals.predatoryAnimals;
 
 import com.javarush.island.bekkiv.annotation.OrganismsAnnotation;
 
-@OrganismsAnnotation(weightKg = 50, amountCell = 2, amountEat = 8, speed = 3)
+@OrganismsAnnotation(weightKg = 50, amountAnimalCell = 2, amountEat = 8, speed = 3)
 public class Wolf extends Predators {
 
 

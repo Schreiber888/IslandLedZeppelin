@@ -24,11 +24,10 @@ import java.util.*;
 public class FactoryOrganisms implements Runnable {
     private List<Organisms> organisms = new ArrayList<>();
     public Map<String, Organisms> organismsMap = new HashMap<>();
-    Plants plants = new Plants(ParamPlants.WEIGHT, ParamPlants.AMOUNT_IN_CELL);
+    //Plants plants = new Plants(ParamPlants.WEIGHT, ParamPlants.AMOUNT_IN_CELL);
     public List<? super Animal> animals = new ArrayList<>();
     public static Map<Integer, List<Organisms>> mapAnimals = new HashMap<>();
-
-    public static final Class<?>[] TYPES = {Wolf.class, Boar.class, Buffalo.class};
+    public static final Class<?>[] TYPES = {Wolf.class, Boar.class, Buffalo.class, Plants.class};
 
 
     public ArrayList<Organisms> getListOrganisms() {
@@ -38,12 +37,13 @@ public class FactoryOrganisms implements Runnable {
     @Override
     public void run() {
 
-        growPlants();
+        try {
+            growPlants();
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
         System.out.println(Arrays.deepToString(Area.arrayArea));
         //---------тут продолжить--------//
-        //weightLossAnimals();
-
-
 
         Game game = new Game();
         Thread threadGame = new Thread(game);
@@ -71,6 +71,7 @@ public class FactoryOrganisms implements Runnable {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     public void makeAnimals() throws NoSuchFieldException, IllegalAccessException {
@@ -78,7 +79,7 @@ public class FactoryOrganisms implements Runnable {
         for (int i = 0; i < Area.arrayArea.length; i++) {
             for (int j = 0; j < Area.arrayArea[i].length; j++) {
                 List<Organisms> listOrganisms = getListOrganisms();
-                for (Organisms prototype : PROTOTYPES) {    //надо клонировать столько раз, сколько животных положено
+                for (Organisms prototype : PROTOTYPES) {
                     Field amountAnimalCellField = prototype.getClass().getField("amountAnimalCell");
                     int amountAnimalCell = (int) amountAnimalCellField.get(prototype);
                     for (int k = 0; k < amountAnimalCell; k++) {
@@ -88,7 +89,6 @@ public class FactoryOrganisms implements Runnable {
                 Area.arrayArea[i][j] = listOrganisms;
             }
         }
-        //System.out.println(Arrays.deepToString(Area.arrayArea));
 
         int numberArea = 0;
         for (int i = 0; i < Area.arrayArea.length; i++) {
@@ -101,14 +101,9 @@ public class FactoryOrganisms implements Runnable {
 
     public static int getParameterArgumentsAmountCell(Organisms organismsFirst) {
         Class<? extends Organisms> organismsClass = organismsFirst.getClass();
-
-        //Field nameField = organismsClass.getField("weightKg");
         int ParameterArgumentsWeightKg = 0;
         if (organismsClass.isAnnotationPresent(OrganismsAnnotation.class)) {
-            ParameterArgumentsWeightKg = organismsClass.getAnnotation(OrganismsAnnotation.class).amountCell();
-            //nameField.setAccessible(true); это если хотим редактированть наверно
-            //Object weightKg = nameField.get(organismsFirst);
-            //return ParameterArgumentsWeightKg;
+            ParameterArgumentsWeightKg = organismsClass.getAnnotation(OrganismsAnnotation.class).amountAnimalCell();
         }
         return ParameterArgumentsWeightKg;
     }
@@ -144,7 +139,7 @@ public class FactoryOrganisms implements Runnable {
             if (type.isAnnotationPresent(OrganismsAnnotation.class)) {
                 OrganismsAnnotation annotation = type.getAnnotation(OrganismsAnnotation.class);
                 float weightKg = annotation.weightKg();
-                int amountCell = annotation.amountCell();
+                int amountCell = annotation.amountAnimalCell();
                 float amountEat = annotation.amountEat();
                 int speed = annotation.speed();
                 organisms[index++] = generateObject(type, weightKg, amountCell, amountEat, speed);
@@ -192,7 +187,7 @@ public class FactoryOrganisms implements Runnable {
         }
     }
 
-    private void growPlants() {
+    /*private void growPlants() {
         for (int i = 0; i < Area.arrayArea.length; i++) {
             for (int j = 0; j < Area.arrayArea[i].length; j++) {
                 for (int k = 0; k < ParamPlants.AMOUNT_IN_CELL; k++) {
@@ -200,8 +195,25 @@ public class FactoryOrganisms implements Runnable {
                 }
             }
         }
-    }
+    }*/
 
+    public void growPlants() throws NoSuchFieldException, IllegalAccessException {
+        final Organisms[] PROTOTYPES = createObject(TYPES);
+        for (int i = 0; i < Area.arrayArea.length; i++) {
+            for (int j = 0; j < Area.arrayArea[i].length; j++) {
+                for (Organisms prototype : PROTOTYPES) {
+                    if (prototype instanceof Plants) {
+                        Field amountAnimalCellField = prototype.getClass().getField("amountAnimalCell");
+                        int amountAnimalCell = (int) amountAnimalCellField.get(prototype);
+                        for (int k = 0; k < amountAnimalCell; k++) {
+                            Area.arrayArea[i][j].add(prototype.clone());
+                        }
+                    }
+                }
+            }
+        }
+
+    }
 }
 
 /*

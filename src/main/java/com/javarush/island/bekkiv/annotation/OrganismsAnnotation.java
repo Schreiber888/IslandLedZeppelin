@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 @Inherited
 public @interface OrganismsAnnotation {
     float weightKg(); //
-    int amountCell();
+    int amountAnimalCell();
     float amountEat();
     int speed();
 }
