@@ -3,7 +3,6 @@ package com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals;
 
 import com.javarush.island.bekkiv.FactoryOrganisms;
 import com.javarush.island.bekkiv.RandomFood;
-import com.javarush.island.bekkiv.area.Constant;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.capabilities.Eatable;
@@ -43,7 +42,6 @@ public abstract class Herbivores extends Animal implements Eatable {
                         } else {
                             organismsFirst.setWeightKg(organismsFirst.getWeightKg() + parameterArgumentsAmountEat);
                             listOrganisms.remove(i);
-                            //i = listOrganisms.size() - 1;
                         }
 
                     }

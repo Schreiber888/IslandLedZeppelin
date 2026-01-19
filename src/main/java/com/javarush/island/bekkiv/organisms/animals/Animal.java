@@ -1,15 +1,10 @@
 package com.javarush.island.bekkiv.organisms.animals;
-
 import com.javarush.island.bekkiv.FactoryOrganisms;
 import com.javarush.island.bekkiv.Runner;
 import com.javarush.island.bekkiv.area.Area;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.organisms.animals.capabilities.ReproducibleAnimals;
-import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
 import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
-import com.javarush.island.bekkiv.organisms.plants.Plants;
-import com.javarush.island.khmelov.entity.organizm.animals.herbivores.Herbivore;
-
 import java.util.List;
 
 public abstract class Animal extends Organisms implements ReproducibleAnimals {
@@ -17,8 +12,6 @@ public abstract class Animal extends Organisms implements ReproducibleAnimals {
     public int amountAnimalCell;
     public float amountEat;
     public int speed;
-
-    //public Animal() {}
 
     public Animal(float weightKg, int amountAnimalCell, float amountEat, int speed) {
         this.weightKg = weightKg;

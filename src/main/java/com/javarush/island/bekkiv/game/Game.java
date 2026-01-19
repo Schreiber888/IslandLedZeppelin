@@ -1,10 +1,8 @@
 package com.javarush.island.bekkiv.game;
-
 import com.javarush.island.bekkiv.FactoryOrganisms;
 import com.javarush.island.bekkiv.RandomFood;
 import com.javarush.island.bekkiv.area.Constant;
 import com.javarush.island.bekkiv.organisms.Organisms;
-import com.javarush.island.bekkiv.area.Area;
 import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
 import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
@@ -16,10 +14,7 @@ public class Game implements Runnable {
 
     @Override
     public void run() {
-        //ParamConstInstanceOrganisms paramConstInstanceOrganisms = new ParamConstInstanceOrganisms();
         int n = 0;
-
-
 
         while (n < Constant.GAME_CYCLE) {
 
@@ -63,22 +58,11 @@ public class Game implements Runnable {
                     }
                 }
 
-
-
                 //System.out.println("Размер ареала 1: " + Area.arrayArea[0][0].size());
                 //System.out.println("Размер ареала 2: " + Area.arrayArea[0][1].size());
 
-
-                //System.out.println(Area.arrayArea[1][0].size());
-                //System.out.println(Area.arrayArea[1][1].size());
-
-                //n = false;
                 //System.out.println(numberArea);
             }
-
-
-
-            // }
 
             n++;
         }

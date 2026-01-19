@@ -19,9 +19,6 @@ import java.util.*;
 
 public class FactoryOrganisms implements Runnable {
     private List<Organisms> organisms = new ArrayList<>();
-    public static boolean gameOver = false;
-    public Map<String, Organisms> organismsMap = new HashMap<>();
-    //Plants plants = new Plants(ParamPlants.WEIGHT, ParamPlants.AMOUNT_IN_CELL);
     public List<? super Animal> animals = new ArrayList<>();
     public static Map<Integer, List<Organisms>> mapAnimals = new HashMap<>();
     public static final Class<?>[] TYPES = {Wolf.class, Boar.class, Bear.class, Buffalo.class, Fox.class, Plants.class, Caterpillar.class,
