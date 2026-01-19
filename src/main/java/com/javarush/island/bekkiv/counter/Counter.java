@@ -47,7 +47,8 @@ public class Counter implements Runnable {
         }
 
         for (int i = 0; i <FactoryOrganisms.TYPES.length; i++) {
-            System.out.print("Количество " + FactoryOrganisms.TYPES[i].getSimpleName() + " " + mapOrganisms.get(FactoryOrganisms.TYPES[i].getSimpleName()) + " | ");
+            //System.out.print("Количество " + FactoryOrganisms.TYPES[i].getSimpleName() + " " + mapOrganisms.get(FactoryOrganisms.TYPES[i].getSimpleName()) + " | ");
+            System.out.print(FactoryOrganisms.TYPES[i].getSimpleName() + " " + mapOrganisms.get(FactoryOrganisms.TYPES[i].getSimpleName()) + "| ");
         }
         System.out.println();
 

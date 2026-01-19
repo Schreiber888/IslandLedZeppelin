@@ -8,12 +8,9 @@ import com.javarush.island.bekkiv.game.Game;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.area.Area;
 import com.javarush.island.bekkiv.organisms.animals.Animal;
-import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Boar;
-import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Buffalo;
-import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
-import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
+import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.*;
+import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.*;
 import com.javarush.island.bekkiv.organisms.plants.Plants;
-import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Wolf;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -26,7 +23,8 @@ public class FactoryOrganisms implements Runnable {
     //Plants plants = new Plants(ParamPlants.WEIGHT, ParamPlants.AMOUNT_IN_CELL);
     public List<? super Animal> animals = new ArrayList<>();
     public static Map<Integer, List<Organisms>> mapAnimals = new HashMap<>();
-    public static final Class<?>[] TYPES = {Wolf.class, Boar.class, Buffalo.class, Plants.class};
+    public static final Class<?>[] TYPES = {Wolf.class, Boar.class, Bear.class, Buffalo.class, Fox.class, Plants.class, Caterpillar.class,
+    Eagle.class, Deer.class, Boa.class, Goat.class, Horse.class, Mouse.class, Rabbit.class, Sheep.class};
 
 
     public ArrayList<Organisms> getListOrganisms() {

@@ -1,8 +1,10 @@
 package com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals;
 
 
+import com.javarush.island.bekkiv.annotation.OrganismsAnnotation;
 import com.javarush.island.bekkiv.organisms.animals.Animal;
 
+@OrganismsAnnotation(weightKg = 400, amountAnimalCell = 20, speed = 4, amountEat = 60)
 public class Horse extends Herbivores {
 
 
