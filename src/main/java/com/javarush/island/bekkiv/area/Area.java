@@ -9,6 +9,6 @@ import java.util.List;
 
 public class Area {
 
-    public static List[][] arrayArea = new List[ParamArea.ROWS_AREA][ParamArea.COLONS_AREA];
+    public static List<Organisms>[][] arrayArea = new List[ParamArea.ROWS_AREA][ParamArea.COLONS_AREA];
 
 }

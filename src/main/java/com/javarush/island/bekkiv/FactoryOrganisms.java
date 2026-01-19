@@ -19,13 +19,14 @@ import java.util.*;
 
 public class FactoryOrganisms implements Runnable {
     private List<Organisms> organisms = new ArrayList<>();
+    public static boolean gameOver = false;
     public Map<String, Organisms> organismsMap = new HashMap<>();
     //Plants plants = new Plants(ParamPlants.WEIGHT, ParamPlants.AMOUNT_IN_CELL);
     public List<? super Animal> animals = new ArrayList<>();
     public static Map<Integer, List<Organisms>> mapAnimals = new HashMap<>();
     public static final Class<?>[] TYPES = {Wolf.class, Boar.class, Bear.class, Buffalo.class, Fox.class, Plants.class, Caterpillar.class,
     Eagle.class, Deer.class, Boa.class, Goat.class, Horse.class, Mouse.class, Rabbit.class, Sheep.class};
-
+    Organisms[] organismsInstance = new Organisms[TYPES.length];
 
     public ArrayList<Organisms> getListOrganisms() {
         return new ArrayList<>(organisms);
@@ -39,7 +40,7 @@ public class FactoryOrganisms implements Runnable {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(Arrays.deepToString(Area.arrayArea));
+        //System.out.println(Arrays.deepToString(Area.arrayArea));-------------------------------------------<
         //---------тут продолжить--------//
 
         Game game = new Game();
@@ -68,6 +69,8 @@ public class FactoryOrganisms implements Runnable {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+
+        Animal.gameOver();
 
     }
 
@@ -138,7 +141,7 @@ public class FactoryOrganisms implements Runnable {
     }
 
     private Organisms[] createObject(Class<?>[] TYPES) {
-        Organisms[] organisms = new Organisms[TYPES.length];
+        //Organisms[] organisms = new Organisms[TYPES.length]; <-------------здесь убрал создание нового объекта!
         int index = 0;
         for (Class<?> type : TYPES) {
             if (type.isAnnotationPresent(OrganismsAnnotation.class)) {
@@ -147,10 +150,10 @@ public class FactoryOrganisms implements Runnable {
                 int amountCell = annotation.amountAnimalCell();
                 float amountEat = annotation.amountEat();
                 int speed = annotation.speed();
-                organisms[index++] = generateObject(type, weightKg, amountCell, amountEat, speed);
+                organismsInstance[index++] = generateObject(type, weightKg, amountCell, amountEat, speed);
             }
         }
-        return organisms;
+        return organismsInstance;
     }
 
     private Organisms generateObject(Class<?> type, float weightKg, int amountCell, float amountEat, int speed) {
@@ -169,23 +172,23 @@ public class FactoryOrganisms implements Runnable {
             for (int i = 0; i < organismsList.size(); i++) {
                 Organisms organisms = organismsList.get(i);
                 if (organisms instanceof Predators) {
-                    System.out.println("Вес " + organisms.getClass().getSimpleName() + " был: " + ((Predators) organisms).getWeightKg());
+                    //System.out.println("Вес " + organisms.getClass().getSimpleName() + " был: " + ((Predators) organisms).getWeightKg());
                     ((Predators) organisms).setWeightKg(((Predators) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
                     if (((Predators) organisms).getWeightKg() < FactoryOrganisms.getParameterArgumentsWeightKg(organisms) * Constant.MIN_WEIGHT_REMOVAL_GAME) {
                         organismsList.remove(i);
-                        System.out.println("Из за веса удален " + organisms.getClass().getSimpleName());
+                        //System.out.println("Из за веса удален " + organisms.getClass().getSimpleName());
                         i = i - 1;
                     }
-                    System.out.println("Вес " + organisms.getClass().getSimpleName() + " стал: " + ((Predators) organisms).getWeightKg());
+                    //System.out.println("Вес " + organisms.getClass().getSimpleName() + " стал: " + ((Predators) organisms).getWeightKg());
                 } else if (organisms instanceof Herbivores) {
-                    System.out.println("Вес " + organisms.getClass().getSimpleName() + " был: " + ((Herbivores) organisms).getWeightKg());
+                    //System.out.println("Вес " + organisms.getClass().getSimpleName() + " был: " + ((Herbivores) organisms).getWeightKg());
                     ((Herbivores) organisms).setWeightKg(((Herbivores) organisms).getWeightKg() * Constant.WEIGHT_LOSS);
                     if (((Herbivores) organisms).getWeightKg() < ((Herbivores) organisms).getWeightKg() * Constant.MIN_WEIGHT_REMOVAL_GAME) {
                         organismsList.remove(i);
-                        System.out.println("Из за веса удален " + organisms.getClass().getSimpleName());
+                        //System.out.println("Из за веса удален " + organisms.getClass().getSimpleName());
                         i = i - 1;
                     }
-                    System.out.println("Вес " + organisms.getClass().getSimpleName() + " стал: " + ((Herbivores) organisms).getWeightKg());
+                    //System.out.println("Вес " + organisms.getClass().getSimpleName() + " стал: " + ((Herbivores) organisms).getWeightKg());
                 } //else throw new IllegalArgumentException("При уменьшении веса животного возникло исключение - такого вида животного не существует");
 
             }
@@ -193,7 +196,7 @@ public class FactoryOrganisms implements Runnable {
     }
 
     public void growPlants() throws NoSuchFieldException, IllegalAccessException {
-        final Organisms[] PROTOTYPES = createObject(TYPES);
+        final Organisms[] PROTOTYPES = createObject(TYPES); //<-------------здесь убрал создание нового объекта чтобы постоянно не создавать объект там
         for (int i = 0; i < Area.arrayArea.length; i++) {
             for (int j = 0; j < Area.arrayArea[i].length; j++) {
                 for (Organisms prototype : PROTOTYPES) {

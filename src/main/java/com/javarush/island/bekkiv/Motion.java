@@ -25,29 +25,33 @@ public class Motion implements Runnable, Moveable {
                 List<Organisms> organismsList = Area.arrayArea[row][colon];
                 for (int animalMove = 0; animalMove < organismsList.size(); animalMove++) {
                     Organisms animal = organismsList.get(animalMove);
-                    if (RandomFood.getProbability() > Constant.PROBABILITY_MOTION) {
-                        if (animal instanceof Animal) {
-                            int nextRow = ThreadLocalRandom.current().nextInt(Math.abs(FactoryOrganisms.getParameterArgumentsSpeed(animal)));
-                            int nextColon = ThreadLocalRandom.current().nextInt(Math.abs(FactoryOrganisms.getParameterArgumentsSpeed(animal)));
-                            if (nextRow + nextColon <= FactoryOrganisms.getParameterArgumentsSpeed(animal)) {
-                                if (nextRow >= row) {
-                                    nextRow = row;
-                                }
-                                if (nextColon >= colon) {
-                                    nextColon = colon;
-                                }
+                    int parameterArgumentsSpeed = FactoryOrganisms.getParameterArgumentsSpeed(animal);
+                    if (parameterArgumentsSpeed > 0) {
+                        if (RandomFood.getProbability() > Constant.PROBABILITY_MOTION) {
+                            if (animal instanceof Animal) {
+                                int nextRow = ThreadLocalRandom.current().nextInt(parameterArgumentsSpeed);
+                                int nextColon = ThreadLocalRandom.current().nextInt(parameterArgumentsSpeed);
+                                if (nextRow + nextColon <= parameterArgumentsSpeed) {
+                                    if (nextRow >= row) {
+                                        nextRow = row;
+                                    }
+                                    if (nextColon >= colon) {
+                                        nextColon = colon;
+                                    }
 
-                                if (getAmountAnimalsInListOrganisms(animal, Area.arrayArea[nextRow][nextColon]) < FactoryOrganisms.getParameterArgumentsAmountCell(animal)){
-                                    Area.arrayArea[nextRow][nextColon].add(animal);
-                                    organismsList.remove(animalMove);
-                                    System.out.println("Переместился--------------------------->");
-                                    if (animalMove != 0) {
-                                        animalMove = animalMove - 1;
+                                    if (getAmountAnimalsInListOrganisms(animal, Area.arrayArea[nextRow][nextColon]) < FactoryOrganisms.getParameterArgumentsAmountCell(animal)) {
+                                        Area.arrayArea[nextRow][nextColon].add(animal);
+                                        organismsList.remove(animalMove);
+                                        //System.out.println("Переместился--------------------------->");
+                                        if (animalMove != 0) {
+                                            animalMove = animalMove - 1;
+                                        }
                                     }
                                 }
-                            }
-                        }
 
+                            }
+
+                        }
                     }
                 }
             }
@@ -56,7 +60,7 @@ public class Motion implements Runnable, Moveable {
 
     }
 
-    private int getAmountAnimalsInListOrganisms(Organisms organismsFirst, List<Organisms> listOrganisms){
+    private int getAmountAnimalsInListOrganisms(Organisms organismsFirst, List<Organisms> listOrganisms) {
         int amountAnimal = 0;
         for (Organisms organism : listOrganisms) {
             if (organism.getClass().getSimpleName().equals(organismsFirst.getClass().getSimpleName())) {

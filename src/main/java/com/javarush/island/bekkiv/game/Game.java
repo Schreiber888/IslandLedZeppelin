@@ -31,7 +31,7 @@ public class Game implements Runnable {
 
             int numberArea;
             int j;
-            System.out.println("размер острова" + " " + FactoryOrganisms.mapAnimals.size());
+
             for (numberArea = 0; numberArea < FactoryOrganisms.mapAnimals.size(); numberArea++) {
                 List<Organisms> listOrganisms = FactoryOrganisms.mapAnimals.get(numberArea);
                 for (j = 0; j < listOrganisms.size(); j++) {
@@ -65,12 +65,15 @@ public class Game implements Runnable {
 
 
 
-                System.out.println("Размер ареала 1: " + Area.arrayArea[0][0].size());
-                System.out.println("Размер ареала 2: " + Area.arrayArea[0][1].size());
+                //System.out.println("Размер ареала 1: " + Area.arrayArea[0][0].size());
+                //System.out.println("Размер ареала 2: " + Area.arrayArea[0][1].size());
+
+
                 //System.out.println(Area.arrayArea[1][0].size());
                 //System.out.println(Area.arrayArea[1][1].size());
 
                 //n = false;
+                //System.out.println(numberArea);
             }
 
 

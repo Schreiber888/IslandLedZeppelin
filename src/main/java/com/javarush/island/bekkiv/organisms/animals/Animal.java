@@ -1,8 +1,14 @@
 package com.javarush.island.bekkiv.organisms.animals;
 
 import com.javarush.island.bekkiv.FactoryOrganisms;
+import com.javarush.island.bekkiv.Runner;
+import com.javarush.island.bekkiv.area.Area;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.organisms.animals.capabilities.ReproducibleAnimals;
+import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores;
+import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
+import com.javarush.island.bekkiv.organisms.plants.Plants;
+import com.javarush.island.khmelov.entity.organizm.animals.herbivores.Herbivore;
 
 import java.util.List;
 
@@ -23,16 +29,16 @@ public abstract class Animal extends Organisms implements ReproducibleAnimals {
 
     @Override
     public void reproduce(Animal organismsFirst, List<Organisms> listOrganisms) {
-        System.out.println("Размер до клона " + listOrganisms.size());
+        //System.out.println("Размер до клона " + listOrganisms.size());
         int amountAnimalsInListOrganisms = getAmountAnimalsInListOrganisms(organismsFirst, listOrganisms);
-        if (amountAnimalsInListOrganisms < FactoryOrganisms.getParameterArgumentsAmountCell(organismsFirst)){
-        listOrganisms.add(organismsFirst.clone());
-        System.out.println("кто-то размножился " + organismsFirst.getClass().getName());
+        if (amountAnimalsInListOrganisms < FactoryOrganisms.getParameterArgumentsAmountCell(organismsFirst)) {
+            listOrganisms.add(organismsFirst.clone());
+            //System.out.println("кто-то размножился " + organismsFirst.getClass().getName());
         }
-        System.out.println("Размер после клона " + listOrganisms.size());
+        //System.out.println("Размер после клона " + listOrganisms.size());
     }
 
-    private int getAmountAnimalsInListOrganisms(Animal organismsFirst, List<Organisms> listOrganisms){
+    private int getAmountAnimalsInListOrganisms(Animal organismsFirst, List<Organisms> listOrganisms) {
         int amountAnimal = 0;
         for (Organisms organism : listOrganisms) {
             if (organism.getClass().getSimpleName().equals(organismsFirst.getClass().getSimpleName())) {
@@ -40,6 +46,24 @@ public abstract class Animal extends Organisms implements ReproducibleAnimals {
             }
         }
         return amountAnimal;
+    }
+
+    public static void gameOver() {
+        for (int i = 0; i < Area.arrayArea.length; i++) {
+            for (int j = 0; j < Area.arrayArea[i].length; j++) {
+                List<Organisms> organismsList = Area.arrayArea[i][j];
+                int amountPredatorsGameOver = 0;
+                for (Organisms organism : organismsList) {
+                    if (organism instanceof Predators) {
+                        amountPredatorsGameOver++;
+                    } else if (amountPredatorsGameOver == 0) {
+                        Runner.executorService.shutdown();
+                        System.out.println("Конец игры. Хищников нету на одной из карт!");
+                        return;
+                    }
+                }
+            }
+        }
     }
 
 
