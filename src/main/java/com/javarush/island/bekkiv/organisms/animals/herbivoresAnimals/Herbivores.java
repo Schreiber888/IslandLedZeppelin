@@ -7,6 +7,7 @@ import com.javarush.island.bekkiv.area.Constant;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.capabilities.Eatable;
+import com.javarush.island.bekkiv.organisms.plants.ParamPlants;
 import com.javarush.island.bekkiv.organisms.plants.Plants;
 
 import java.util.List;
@@ -25,17 +26,26 @@ public abstract class Herbivores extends Animal implements Eatable {
         for (int i = 0; i < listOrganisms.size(); i++) {
             Organisms organismsSecond = listOrganisms.get(i);
             float parameterArgumentsWeightKg = FactoryOrganisms.getParameterArgumentsWeightKg(organismsFirst);
+            float parameterArgumentsAmountEat = FactoryOrganisms.getParameterArgumentsAmountEat(organismsFirst);
             if (organismsSecond instanceof Plants
             && organismsFirst.getWeightKg() <= parameterArgumentsWeightKg) {
-                if (RandomFood.getProbability() <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) { //тут может ошибка
-                    //System.out.println("Кабан вес: " + " " + organismsFirst.getWeightKg());
-                    if ((organismsFirst.getWeightKg() * Constant.COEFFICIENT_GAIN_WEIGHT) >= Plants.WEIGHT) {
-                        organismsFirst.setWeightKg(organismsFirst.getWeightKg() + Plants.WEIGHT);
+                if (RandomFood.getProbability() <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) {
+                    //System.out.println("Волк вес: " + " " + organismsFirst.getWeightKg());
+                    if (parameterArgumentsAmountEat >= ParamPlants.WEIGHT) {
+                        organismsFirst.setWeightKg(organismsFirst.getWeightKg() + ParamPlants.WEIGHT);
                         listOrganisms.remove(i);
                     } else {
-                        organismsFirst.setWeightKg(organismsFirst.getWeightKg() + (organismsFirst.getWeightKg() * Constant.COEFFICIENT_GAIN_WEIGHT));
-                        listOrganisms.remove(i);
-                        i = listOrganisms.size() - 1;
+                        float presumptiveWeightKg = organismsFirst.getWeightKg() + parameterArgumentsAmountEat;
+                        if (presumptiveWeightKg > parameterArgumentsWeightKg){
+                            organismsFirst.setWeightKg(parameterArgumentsWeightKg);
+                            listOrganisms.remove(i);
+                            i = listOrganisms.size() - 1;
+                        } else {
+                            organismsFirst.setWeightKg(organismsFirst.getWeightKg() + parameterArgumentsAmountEat);
+                            listOrganisms.remove(i);
+                            //i = listOrganisms.size() - 1;
+                        }
+
                     }
                     System.out.println(organismsFirst.getClass().getSimpleName() + " выгнал растение из игры");
                     //System.out.println("Кабан вес: " + " " + organismsFirst.getWeightKg());
@@ -48,3 +58,15 @@ public abstract class Herbivores extends Animal implements Eatable {
 
 
 }
+
+
+/*if (RandomFood.getProbability() <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) { //тут может ошибка
+        //System.out.println("Кабан вес: " + " " + organismsFirst.getWeightKg());
+        if ((organismsFirst.getWeightKg() * Constant.COEFFICIENT_GAIN_WEIGHT) >= Plants.WEIGHT) {
+        organismsFirst.setWeightKg(organismsFirst.getWeightKg() + Plants.WEIGHT);
+        listOrganisms.remove(i);
+                    } else {
+                            organismsFirst.setWeightKg(organismsFirst.getWeightKg() + (organismsFirst.getWeightKg() * Constant.COEFFICIENT_GAIN_WEIGHT));
+        listOrganisms.remove(i);
+i = listOrganisms.size() - 1;
+        }*/

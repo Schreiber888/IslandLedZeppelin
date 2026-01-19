@@ -27,13 +27,22 @@ public abstract class Predators extends Animal implements Eatable {
                     && organismsFirst.getWeightKg() <= parameterArgumentsWeightKg) {
                 if (RandomFood.getProbability() <= RandomFood.getValueTableProbability(organismsFirst, organismsSecond)) {
                     //System.out.println("Волк вес: " + " " + organismsFirst.getWeightKg());
-                    if ((organismsFirst.getWeightKg() * Constant.COEFFICIENT_GAIN_WEIGHT) >= ((Herbivores) organismsSecond).getWeightKg()) {
+                    float parameterArgumentsAmountEat = FactoryOrganisms.getParameterArgumentsAmountEat(organismsFirst);
+                    if (parameterArgumentsAmountEat >= ((Herbivores) organismsSecond).getWeightKg()) {
                         organismsFirst.setWeightKg(organismsFirst.getWeightKg() + ((Herbivores) organismsSecond).getWeightKg());
                         listOrganisms.remove(i);
                     } else {
-                        organismsFirst.setWeightKg(organismsFirst.getWeightKg() + (organismsFirst.getWeightKg() * Constant.COEFFICIENT_GAIN_WEIGHT));
-                        listOrganisms.remove(i);
-                        i = listOrganisms.size() - 1;
+                        float presumptiveWeightKg = organismsFirst.getWeightKg() + parameterArgumentsAmountEat;
+                        if (presumptiveWeightKg > parameterArgumentsWeightKg){
+                            organismsFirst.setWeightKg(parameterArgumentsWeightKg);
+                            listOrganisms.remove(i);
+                            i = listOrganisms.size() - 1;
+                        } else {
+                            organismsFirst.setWeightKg(organismsFirst.getWeightKg() + parameterArgumentsAmountEat);
+                            listOrganisms.remove(i);
+                            //i = listOrganisms.size() - 1;
+                        }
+
                     }
                     System.out.println(organismsFirst.getClass().getSimpleName() + " выгнал " + organismsSecond.getClass().getSimpleName() + " из игры");
                     //System.out.println("Волк вес: " + " " + organismsFirst.getWeightKg());

@@ -130,6 +130,14 @@ public class FactoryOrganisms implements Runnable {
         return ParameterArgumentsSpeed;
     }
 
+    public static float getParameterArgumentsAmountEat(Organisms organismsFirst) {
+        Class<? extends Organisms> organismsClass = organismsFirst.getClass();
+        float ParameterArgumentsAmounteat = 0;
+        if (organismsClass.isAnnotationPresent(OrganismsAnnotation.class)) {
+            ParameterArgumentsAmounteat = organismsClass.getAnnotation(OrganismsAnnotation.class).amountEat();
+        }
+        return ParameterArgumentsAmounteat;
+    }
 
     private Organisms[] createObject(Class<?>[] TYPES) {
         Organisms[] organisms = new Organisms[TYPES.length];
