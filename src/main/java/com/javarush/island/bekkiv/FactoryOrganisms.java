@@ -24,10 +24,15 @@ public class FactoryOrganisms implements Runnable {
     public static final Class<?>[] TYPES = {Wolf.class, Boar.class, Bear.class, Buffalo.class, Fox.class, Plants.class, Caterpillar.class,
     Eagle.class, Deer.class, Boa.class, Goat.class, Horse.class, Mouse.class, Rabbit.class, Sheep.class};
     Organisms[] organismsInstance = new Organisms[TYPES.length];
-
     public ArrayList<Organisms> getListOrganisms() {
         return new ArrayList<>(organisms);
     }
+    Game game = new Game();
+
+    Motion motion = new Motion();
+    Counter counter = new Counter();
+
+
 
     @Override
     public void run() {
@@ -40,7 +45,6 @@ public class FactoryOrganisms implements Runnable {
         //System.out.println(Arrays.deepToString(Area.arrayArea));-------------------------------------------<
         //---------тут продолжить--------//
 
-        Game game = new Game();
         Thread threadGame = new Thread(game);
         threadGame.start();
         try {
@@ -49,7 +53,6 @@ public class FactoryOrganisms implements Runnable {
             throw new RuntimeException(e);
         }
 
-        Motion motion = new Motion();
         Thread threadMotion = new Thread(motion);
         threadMotion.start();
         try {
@@ -58,7 +61,6 @@ public class FactoryOrganisms implements Runnable {
             throw new RuntimeException(e);
         }
 
-        Counter counter = new Counter();
         Thread threadCounter = new Thread(counter);
         threadCounter.start();
         try {

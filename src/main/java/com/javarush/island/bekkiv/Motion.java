@@ -5,6 +5,7 @@ import com.javarush.island.bekkiv.area.Constant;
 import com.javarush.island.bekkiv.organisms.Organisms;
 import com.javarush.island.bekkiv.organisms.animals.Animal;
 import com.javarush.island.bekkiv.organisms.animals.capabilities.Moveable;
+import com.javarush.island.bekkiv.organisms.animals.predatoryAnimals.Predators;
 
 
 import java.util.List;
@@ -14,17 +15,27 @@ public class Motion implements Runnable, Moveable {
     @Override
     public void run() {
 
-        move();
+        try {
+            move();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
     @Override
-    public synchronized void move() {
+    public synchronized void move() throws InterruptedException {
         for (int row = 0; row < Area.arrayArea.length; row++) {
             for (int colon = 0; colon < Area.arrayArea[row].length; colon++) {
                 List<Organisms> organismsList = Area.arrayArea[row][colon];
                 for (int animalMove = 0; animalMove < organismsList.size(); animalMove++) {
                     Organisms animal = organismsList.get(animalMove);
+                    if (Predators.animal != null){
+                        if (Predators.animal.equals(animal)) {
+                            this.wait();
+                            //System.out.println("поток остановлен");
+                        }
+                    }
                     int parameterArgumentsSpeed = FactoryOrganisms.getParameterArgumentsSpeed(animal);
                     if (parameterArgumentsSpeed > 0) {
                         if (RandomFood.getProbability() > Constant.PROBABILITY_MOTION) {

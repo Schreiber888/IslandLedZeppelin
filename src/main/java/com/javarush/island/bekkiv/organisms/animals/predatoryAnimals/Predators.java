@@ -8,7 +8,7 @@ import com.javarush.island.bekkiv.organisms.animals.herbivoresAnimals.Herbivores
 import java.util.List;
 
 public abstract class Predators extends Animal implements Eatable {
-
+    public static volatile Organisms animal;
 
     public Predators(float weightKg, int amountAnimalCell, float amountEat, int speed) {
         super(weightKg, amountAnimalCell, amountEat, speed);
@@ -43,6 +43,7 @@ public abstract class Predators extends Animal implements Eatable {
                     //System.out.println("Волк вес: " + " " + organismsFirst.getWeightKg());
                 }
             }
+            this.notifyAll();
         }
     }
 }
